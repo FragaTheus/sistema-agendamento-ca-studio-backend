@@ -27,14 +27,14 @@ public class CreateAdminRequestDto {
 
     @NotBlank
     @Pattern(
-            regexp = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[^a-zA-Z0-9]).{8,30}$",
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,30}$",
             message = "Senha invalida"
     )
     String password;
 
     @NotBlank
     @Pattern(
-            regexp = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[^a-zA-Z0-9]).{8,30}$",
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,30}$",
             message = "Senha invalida"
     )
     String confirmPassword;

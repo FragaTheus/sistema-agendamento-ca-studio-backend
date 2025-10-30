@@ -4,6 +4,8 @@ import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
 import br.com.castudio.sistema_agendamento.aplication.mapper.CreateAdminMapper;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
+import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordDontMathcException;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
@@ -36,11 +38,11 @@ public class CreateAdminServiceImpl implements CreateAdminService {
     public CreateAdminResponseDto createAdmin(CreateAdminRequestDto requestDto) {
 
         if (verifyEmail(requestDto.getEmail())){
-            throw new RuntimeException("Email ja cadastrado no sistema");
+            throw new EmailAlreadyExistException(requestDto.getEmail());
         }
 
         if (!verifyPassword(requestDto)){
-            throw new RuntimeException("Senhas nao coincidem");
+            throw new PasswordDontMathcException();
         }
 
         CreateAdminMapper mapper = new CreateAdminMapper();
