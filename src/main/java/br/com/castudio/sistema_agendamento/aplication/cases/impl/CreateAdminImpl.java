@@ -34,7 +34,7 @@ public class CreateAdminImpl implements CreateAdminCase {
         }
 
         boolean isMatchAdminKey = keyService.verifyAdminKey(requestDto.getAdminKey());
-        if (isMatchAdminKey){
+        if (!isMatchAdminKey){
             throw new WrongAdminKeyException();
         }
 
