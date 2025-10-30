@@ -35,23 +35,23 @@ public class Admin {
     }
 
 
-    private String getAdminEmail(){
+    public String getAdminEmail(){
         return this.email.getEmailValue();
     }
 
-    private String getAdminsPassword(){
+    public String getAdminsPassword(){
         return this.password.getPasswordValue();
     }
 
-    private void adminChangeEmail(String newEmail){
+    public void adminChangeEmail(String newEmail){
         this.email = new EmailVO(newEmail);
     }
 
-    private void adminChangePassword(String newPassword){
+    public void adminChangePassword(String newPassword){
         this.password = new PasswordVO(newPassword);
     }
 
-    private boolean verifyAdminPassword(String inputPassword){
+    public boolean verifyAdminPassword(String inputPassword){
         return password.isEqual(inputPassword);
     }
 

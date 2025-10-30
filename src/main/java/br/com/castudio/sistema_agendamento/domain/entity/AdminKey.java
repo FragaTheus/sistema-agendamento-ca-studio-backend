@@ -15,11 +15,11 @@ public class AdminKey {
         this.adminKeyValue = new AdminKeyValue(key);
     }
 
-    private void changeAdminKey(String key){
+    public void changeAdminKey(String key){
         this.adminKeyValue = new AdminKeyValue(key);
     }
 
-    private boolean verifyAdminKey(String key){
+    public boolean verifyAdminKey(String key){
         return adminKeyValue.isEqual(key);
     }
 

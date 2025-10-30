@@ -6,10 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AdminKeyServiceImpl implements AdminKeyService{
 
-    private AdminKey adminKey;
+    //Simula admin key da base
+    AdminKey currentKey = new AdminKey("AdminKey@123");
 
     @Override
     public boolean verifyAdminKey(String key) {
-        return false;
+        return currentKey.verifyAdminKey(key);
     }
 }
