@@ -13,7 +13,8 @@ public record PasswordVO(String value) {
     }
 
     public boolean isEqual(String password){
-        return ENCODER.matches(password, this.value);
+        String hashePassword = ENCODER.encode(password);
+        return ENCODER.matches(hashePassword, this.value);
     }
 
     public String getPasswordValue(){

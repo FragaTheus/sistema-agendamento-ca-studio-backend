@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class CreateAdminImpl implements CreateAdminCase {
+public class CreateAdminCaseImpl implements CreateAdminCase {
 
     private AdminService adminService;
     private AdminKeyService keyService;
@@ -28,7 +28,8 @@ public class CreateAdminImpl implements CreateAdminCase {
             throw new EmailAlreadyExistException(requestDto.getEmail());
         }
 
-        boolean isMatchAdminPasswords = adminService.verifyPassword(requestDto);
+        boolean isMatchAdminPasswords = requestDto.getPassword()
+                .equals(requestDto.getConfirmPassword());
         if (!isMatchAdminPasswords){
             throw new PasswordDontMathcException();
         }

@@ -11,7 +11,7 @@ public record AdminKeyValue(String value) {
     }
 
     public boolean isEqual(String adminKey){
-        return ENCODER.matches(value, adminKey);
+        return ENCODER.matches(adminKey, this.value);
     }
 
     public String getADminKeyValue(){
