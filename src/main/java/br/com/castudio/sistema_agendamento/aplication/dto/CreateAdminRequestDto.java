@@ -39,4 +39,11 @@ public class CreateAdminRequestDto {
     )
     String confirmPassword;
 
+    @NotBlank
+    @Pattern(
+            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,30}$",
+            message = "Chave incorreta"
+    )
+    String adminKey;
+
 }

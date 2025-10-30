@@ -1,15 +1,17 @@
-package br.com.castudio.sistema_agendamento.aplication.service;
+package br.com.castudio.sistema_agendamento.aplication.service.impl;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
 import br.com.castudio.sistema_agendamento.aplication.mapper.CreateAdminMapper;
+import br.com.castudio.sistema_agendamento.aplication.service.interfaces.AdminService;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 import br.com.castudio.sistema_agendamento.domain.exceptions.admin.EmailAlreadyExistException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.admin.PasswordDontMathcException;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
-@Service
+@Component
 public class AdminServiceImpl implements AdminService {
 
     //Simula Base
@@ -34,22 +36,4 @@ public class AdminServiceImpl implements AdminService {
         return isEqual;
     }
 
-    @Override
-    public CreateAdminResponseDto createAdmin(CreateAdminRequestDto requestDto) {
-
-        if (verifyEmail(requestDto.getEmail())){
-            throw new EmailAlreadyExistException(requestDto.getEmail());
-        }
-
-        if (!verifyPassword(requestDto)){
-            throw new PasswordDontMathcException();
-        }
-
-        CreateAdminMapper mapper = new CreateAdminMapper();
-        Admin admin = mapper.toEntity(requestDto);
-
-        repository.add(admin);
-        CreateAdminResponseDto responseDto = mapper.toResponse(admin);
-        return responseDto;
-    }
 }

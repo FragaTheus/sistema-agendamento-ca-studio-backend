@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.aplication.service;
+package br.com.castudio.sistema_agendamento.aplication.service.interfaces;
 
 public interface AdminKeyService {
 

@@ -1,8 +1,9 @@
 package br.com.castudio.sistema_agendamento.admin;
 
+import br.com.castudio.sistema_agendamento.aplication.cases.interfaces.CreateAdminCase;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
-import br.com.castudio.sistema_agendamento.aplication.service.AdminService;
+import br.com.castudio.sistema_agendamento.aplication.service.interfaces.AdminService;
 import br.com.castudio.sistema_agendamento.infra.api.AdminController;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -28,7 +29,7 @@ public class AdminControllerTest {
     private MockMvc http;
 
     @MockitoBean
-    private AdminService service;
+    private CreateAdminCase createAdminCase;
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -50,7 +51,7 @@ public class AdminControllerTest {
                 "email@email.com"
         );
 
-        Mockito.when(service.createAdmin(Mockito.any(CreateAdminRequestDto.class)))
+        Mockito.when(createAdminCase.createAdmin(Mockito.any(CreateAdminRequestDto.class)))
                 .thenReturn(responseDto);
 
         http.perform(post("/admin-accounts")
