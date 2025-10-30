@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
 @Service
-public class CreateAdminServiceImpl implements CreateAdminService {
+public class AdminServiceImpl implements AdminService {
 
     //Simula Base
     private ArrayList<Admin> repository = new ArrayList<>();

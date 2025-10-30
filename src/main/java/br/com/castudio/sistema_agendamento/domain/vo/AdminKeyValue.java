@@ -14,4 +14,8 @@ public record AdminKeyValue(String value) {
         return ENCODER.matches(value, adminKey);
     }
 
+    public String getADminKeyValue(){
+        return this.value;
+    }
+
 }

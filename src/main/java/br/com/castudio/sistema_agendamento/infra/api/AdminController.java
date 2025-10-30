@@ -2,7 +2,7 @@ package br.com.castudio.sistema_agendamento.infra.api;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
-import br.com.castudio.sistema_agendamento.aplication.service.CreateAdminService;
+import br.com.castudio.sistema_agendamento.aplication.service.AdminService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin-accounts")
 public class AdminController {
 
-    private final CreateAdminService service;
+    private final AdminService service;
 
     @PostMapping
     public ResponseEntity<CreateAdminResponseDto> createAdmin(

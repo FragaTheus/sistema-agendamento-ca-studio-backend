@@ -4,7 +4,7 @@ import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 
-public interface CreateAdminService {
+public interface AdminService {
 
     public Admin saveAdmin(Admin admin);
 

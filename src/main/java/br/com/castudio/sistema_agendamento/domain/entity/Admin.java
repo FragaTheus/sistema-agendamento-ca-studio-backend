@@ -34,12 +34,25 @@ public class Admin {
         this.password = new PasswordVO(password);
     }
 
+
+    private String getAdminEmail(){
+        return this.email.getEmailValue();
+    }
+
+    private String getAdminsPassword(){
+        return this.password.getPasswordValue();
+    }
+
     private void adminChangeEmail(String newEmail){
         this.email = new EmailVO(newEmail);
     }
 
     private void adminChangePassword(String newPassword){
         this.password = new PasswordVO(newPassword);
+    }
+
+    private boolean verifyAdminPassword(String inputPassword){
+        return password.isEqual(inputPassword);
     }
 
 }

@@ -2,19 +2,18 @@ package br.com.castudio.sistema_agendamento.admin;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
-import br.com.castudio.sistema_agendamento.aplication.service.CreateAdminServiceImpl;
-import br.com.castudio.sistema_agendamento.domain.entity.Admin;
+import br.com.castudio.sistema_agendamento.aplication.service.AdminServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-public class CreateAdminServiceTest {
+public class AdminServiceTest {
 
-    private CreateAdminServiceImpl service;
+    private AdminServiceImpl service;
 
     @BeforeEach
     void setUp(){
-        service = new CreateAdminServiceImpl();
+        service = new AdminServiceImpl();
     }
 
     @Test

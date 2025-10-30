@@ -4,6 +4,7 @@ import br.com.castudio.sistema_agendamento.domain.vo.AdminKeyValue;
 
 import java.util.UUID;
 
+
 public class AdminKey {
 
     private UUID uuid;
@@ -12,6 +13,14 @@ public class AdminKey {
     public AdminKey(String key){
         this.uuid = UUID.randomUUID();
         this.adminKeyValue = new AdminKeyValue(key);
+    }
+
+    private void changeAdminKey(String key){
+        this.adminKeyValue = new AdminKeyValue(key);
+    }
+
+    private boolean verifyAdminKey(String key){
+        return adminKeyValue.isEqual(key);
     }
 
 }
