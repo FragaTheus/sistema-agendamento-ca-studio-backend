@@ -3,9 +3,11 @@ package br.com.castudio.sistema_agendamento.aplication.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 
 @Getter
+@Builder
 @AllArgsConstructor
 public class CreateAdminRequestDto {
 
@@ -25,14 +27,14 @@ public class CreateAdminRequestDto {
 
     @NotBlank
     @Pattern(
-            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,30}$",
+            regexp = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[^a-zA-Z0-9]).{8,30}$",
             message = "Senha invalida"
     )
     String password;
 
     @NotBlank
     @Pattern(
-            regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d).{8,30}$",
+            regexp = "^(?=.[a-z])(?=.[A-Z])(?=.\\d)(?=.[^a-zA-Z0-9]).{8,30}$",
             message = "Senha invalida"
     )
     String confirmPassword;

@@ -4,6 +4,7 @@ import br.com.castudio.sistema_agendamento.domain.vo.EmailVO;
 import br.com.castudio.sistema_agendamento.domain.vo.PasswordVO;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 

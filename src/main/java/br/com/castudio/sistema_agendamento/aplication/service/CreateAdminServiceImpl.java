@@ -1,0 +1,53 @@
+package br.com.castudio.sistema_agendamento.aplication.service;
+
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
+import br.com.castudio.sistema_agendamento.aplication.mapper.CreateAdminMapper;
+import br.com.castudio.sistema_agendamento.domain.entity.Admin;
+import org.springframework.stereotype.Service;
+import java.util.ArrayList;
+
+@Service
+public class CreateAdminServiceImpl implements CreateAdminService {
+
+    //Simula Base
+    private ArrayList<Admin> repository = new ArrayList<>();
+
+    @Override
+    public Admin saveAdmin(Admin admin) {
+        repository.add(admin);
+        return admin;
+    }
+
+    @Override
+    public boolean verifyEmail(String email) {
+        return repository.stream().anyMatch(admin1 -> admin1.getEmail().value().equals(email));
+    }
+
+    @Override
+    public boolean verifyPassword(CreateAdminRequestDto requestDto) {
+        String password = requestDto.getPassword();
+        String confirmPassword = requestDto.getConfirmPassword();
+        boolean isEqual = password.equals(confirmPassword);
+        return isEqual;
+    }
+
+    @Override
+    public CreateAdminResponseDto createAdmin(CreateAdminRequestDto requestDto) {
+
+        if (verifyEmail(requestDto.getEmail())){
+            throw new RuntimeException("Email ja cadastrado no sistema");
+        }
+
+        if (!verifyPassword(requestDto)){
+            throw new RuntimeException("Senhas nao coincidem");
+        }
+
+        CreateAdminMapper mapper = new CreateAdminMapper();
+        Admin admin = mapper.toEntity(requestDto);
+
+        repository.add(admin);
+        CreateAdminResponseDto responseDto = mapper.toResponse(admin);
+        return responseDto;
+    }
+}
