@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.infra.handler;
 
-import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordDontMathcException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.admin.EmailAlreadyExistException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.admin.PasswordDontMathcException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

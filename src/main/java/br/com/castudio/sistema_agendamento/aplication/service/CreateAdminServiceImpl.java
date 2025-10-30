@@ -4,8 +4,8 @@ import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
 import br.com.castudio.sistema_agendamento.aplication.mapper.CreateAdminMapper;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
-import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordDontMathcException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.admin.EmailAlreadyExistException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.admin.PasswordDontMathcException;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 

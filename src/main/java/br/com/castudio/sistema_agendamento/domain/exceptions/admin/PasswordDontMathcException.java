@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.domain.exceptions;
+package br.com.castudio.sistema_agendamento.domain.exceptions.admin;
 
 public class PasswordDontMathcException extends AdminExceptions{
 
