@@ -32,6 +32,7 @@ public class Admin {
         this.name = name;
         this.email = new EmailVO(email);
         this.password = new PasswordVO(password);
+
     }
 
 
