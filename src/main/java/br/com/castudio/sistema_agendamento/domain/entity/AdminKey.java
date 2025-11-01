@@ -1,36 +1,29 @@
 package br.com.castudio.sistema_agendamento.domain.entity;
 
-import br.com.castudio.sistema_agendamento.domain.vo.AdminKeyValue;
-import jakarta.persistence.Embedded;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.UUID;
-
+@Getter
 @Entity
 @NoArgsConstructor
 public class AdminKey {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 1L;
 
-    @Embedded
-    private AdminKeyValue adminKeyValue;
+    @Setter
+    @Column(name = "admin_key")
+    private String key;
 
     public AdminKey(String key){
-        this.adminKeyValue = new AdminKeyValue(key);
+        this.key = key;
     }
 
-    public void changeAdminKey(String key){
-        this.adminKeyValue = new AdminKeyValue(key);
-    }
 
-    public boolean verifyAdminKey(String key){
-        return adminKeyValue.isEqual(key);
-    }
 
-    public String getKey(){
-        return adminKeyValue.getValue();
-    }
+
+
 }

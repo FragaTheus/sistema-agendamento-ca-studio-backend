@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.admin.services;
 
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountRequest;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountResponse;
 import br.com.castudio.sistema_agendamento.aplication.service.AdminService;
 import br.com.castudio.sistema_agendamento.aplication.service.CreateAdminServiceImpl;
 import br.com.castudio.sistema_agendamento.aplication.service.KeyService;
@@ -32,22 +32,22 @@ class CreateAdminServiceImplTest {
     @Test
     void shouldCreateAdminSuccessfully() {
         // given
-        CreateAdminRequestDto dto = new CreateAdminRequestDto(
+        CreateAccountRequest dto = new CreateAccountRequest(
                 "Matheus", "math@email.com", "Senha@123", "Senha@123", "123456"
         );
         Admin admin = new Admin();
         Admin savedAdmin = new Admin();
         // mocks
-        when(adminService.insertAdminInBd(any(Admin.class))).thenReturn(savedAdmin);
+        when(adminService.saveAdmin(any(Admin.class))).thenReturn(savedAdmin);
 
         // when
-        CreateAdminResponseDto response = createAdminService.createAdmin(dto);
+        CreateAccountResponse response = createAdminService.createAdmin(dto);
 
         // then
         verify(adminService).validateEmail(dto.getEmail());
-        verify(adminService).inputPasswordIsMatch(dto);
-        verify(keyService).isMatch(dto.getAdminKey());
-        verify(adminService).insertAdminInBd(any(Admin.class));
+        verify(adminService).confirmPassword(dto);
+        verify(keyService).keyIsMatch(dto.getAdminKey());
+        verify(adminService).saveAdmin(any(Admin.class));
 
         assertNotNull(response);
     }

@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.infra.api;
 
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountRequest;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountResponse;
 import br.com.castudio.sistema_agendamento.aplication.service.CreateAdminService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -22,10 +22,10 @@ public class AdminController {
     private CreateAdminService createAdminService;
 
     @PostMapping
-    public ResponseEntity<CreateAdminResponseDto> createAdmin(
-            @Valid @RequestBody CreateAdminRequestDto requestDto
+    public ResponseEntity<CreateAccountResponse> createAdmin(
+            @Valid @RequestBody CreateAccountRequest requestDto
     ){
-        CreateAdminResponseDto admin = createAdminService.createAdmin(requestDto);
+        CreateAccountResponse admin = createAdminService.createAdmin(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(admin);
     }
 }

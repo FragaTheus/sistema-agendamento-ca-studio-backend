@@ -6,8 +6,10 @@ import java.util.Optional;
 
 public interface KeyService {
 
-    public Optional<AdminKey> selectKeyById(Long id);
+    public AdminKey createKey(String requestKey);
 
-    public boolean isMatch(String key);
+    public Optional<AdminKey> getKey();
+
+    public boolean keyIsMatch(String requestKey);
 
 }

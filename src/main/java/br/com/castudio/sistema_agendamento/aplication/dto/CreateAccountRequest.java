@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class CreateAdminRequestDto {
+public class CreateAccountRequest {
 
     @NotBlank
     @Pattern(

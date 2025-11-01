@@ -1,22 +1,16 @@
 package br.com.castudio.sistema_agendamento.domain.repository;
 
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
-import br.com.castudio.sistema_agendamento.infra.repository.jpa.AdminJpa;
-import lombok.AllArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+import java.util.UUID;
+
 @Repository
-@AllArgsConstructor
-public class AdminRepository {
+public interface AdminRepository extends JpaRepository<Admin, UUID> {
 
-    private final AdminJpa jpa;
+    public boolean existsByEmail(String email);
 
-    public Admin saveAdmin(Admin admin){
-        return jpa.save(admin);
-    }
-
-    public boolean emailExists(String email){
-        return jpa.existsByEmail(email);
-    }
-
+    public Optional<String> findByEmail(String email);
 }

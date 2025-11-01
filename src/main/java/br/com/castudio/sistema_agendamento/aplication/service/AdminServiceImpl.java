@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.aplication.service;
 
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountRequest;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 import br.com.castudio.sistema_agendamento.domain.exceptions.DataBaseException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
@@ -16,28 +16,28 @@ public class AdminServiceImpl implements AdminService{
     private final AdminRepository repository;
 
     @Override
-    public Admin insertAdminInBd(Admin admin) {
+    public Admin saveAdmin(Admin admin) {
         try{
-            return repository.saveAdmin(admin);
+            return repository.save(admin);
         }catch (Exception e){
             throw new DataBaseException();
         }
     }
 
     @Override
-    public boolean validateEmail(String email) {
-            boolean isExist = repository.emailExists(email);
+    public void validateEmail(String email) {
+            boolean isExist = repository.existsByEmail(email);
             if (isExist){
                 throw new EmailAlreadyExistException(email);
             }
-            return isExist;
     }
 
     @Override
-    public void inputPasswordIsMatch(CreateAdminRequestDto requestDto) {
-        boolean isMatch = requestDto.getPassword().equals(requestDto.getConfirmPassword());
-        if (!isMatch){
+    public void confirmPassword(CreateAccountRequest requestDto) {
+        if (!requestDto.getPassword().equals(requestDto.getConfirmPassword())){
             throw new PasswordDontMathcException();
         }
     }
+
+
 }

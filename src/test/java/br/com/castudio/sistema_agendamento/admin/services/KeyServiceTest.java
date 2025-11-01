@@ -32,12 +32,12 @@ public class KeyServiceTest {
 
         AdminKey dbKey = new AdminKey("Chave@123");
 
-        when(repository.selectKeyValue(1L)).thenReturn(Optional.of(dbKey));
+        when(repository.findById(1L)).thenReturn(Optional.of(dbKey));
 
 
         assertAll(
-                ()->assertTrue(keyService.isMatch(rightInputKey)),
-                ()->assertThrows(WrongAdminKeyException.class, ()-> keyService.isMatch(wrongInputKey))
+                ()->assertTrue(keyService.keyIsMatch(rightInputKey)),
+                ()->assertThrows(WrongAdminKeyException.class, ()-> keyService.keyIsMatch(wrongInputKey))
         );
 
     }

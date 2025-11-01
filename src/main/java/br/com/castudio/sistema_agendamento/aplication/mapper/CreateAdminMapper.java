@@ -1,19 +1,23 @@
 package br.com.castudio.sistema_agendamento.aplication.mapper;
 
 
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountRequest;
+import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountResponse;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 
 
 public class CreateAdminMapper {
 
-    public static Admin toEntity(CreateAdminRequestDto requestDto){
-        return new Admin(requestDto.getName(), requestDto.getEmail(), requestDto.getConfirmPassword());
+    public static Admin toEntity(CreateAccountRequest requestDto){
+        return Admin.builder()
+                .name(requestDto.getName())
+                .email(requestDto.getEmail())
+                .password(requestDto.getConfirmPassword())
+                .build();
     }
 
-    public static CreateAdminResponseDto toResponse(Admin admin){
-        return new CreateAdminResponseDto(admin.getUuid(), admin.getName(), admin.getEmail());
+    public static CreateAccountResponse toResponse(Admin admin){
+        return new CreateAccountResponse(admin.getId(), admin.getName(), admin.getEmail());
     }
 
 }

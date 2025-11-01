@@ -1,6 +1,5 @@
 package br.com.castudio.sistema_agendamento.domain.entity;
 
-import br.com.castudio.sistema_agendamento.domain.vo.PasswordVO;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -9,48 +8,26 @@ import java.util.UUID;
 @Getter
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Admin {
 
     @Id
+    @GeneratedValue
     @Column
-    private UUID uuid;
+    private UUID id;
 
     @Setter
     @Column
     private String name;
 
+    @Setter
     @Column
     private String email;
 
+    @Setter
     @Column
-    @Embedded
-    private PasswordVO password;
+    private String password;
 
-    public Admin(UUID id, String name, String email, String password){
-        this.uuid = UUID.randomUUID();
-        this.name = name;
-        this.email = email;
-        this.password = new PasswordVO(password);
-    }
-
-    public Admin(String name, String email, String password){
-        this.uuid = UUID.randomUUID();
-        this.name = name;
-        this.email = email;
-        this.password = new PasswordVO(password);
-
-    }
-
-    public String getPassword(){
-        return password.getValue();
-    }
-
-    public void adminChangePassword(String newPassword){
-        this.password = new PasswordVO(newPassword);
-    }
-
-    public boolean verifyAdminPassword(String inputPassword){
-        return password.isEqual(inputPassword);
-    }
 
 }

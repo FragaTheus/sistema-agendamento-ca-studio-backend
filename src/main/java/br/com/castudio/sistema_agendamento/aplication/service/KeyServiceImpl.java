@@ -5,8 +5,8 @@ import br.com.castudio.sistema_agendamento.domain.exceptions.DataBaseException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.NotRegisteredAdminKey;
 import br.com.castudio.sistema_agendamento.domain.exceptions.WrongAdminKeyException;
 import br.com.castudio.sistema_agendamento.domain.repository.KeyRepository;
-import br.com.castudio.sistema_agendamento.infra.repository.jpa.KeyJpa;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,30 +16,34 @@ import java.util.Optional;
 public class KeyServiceImpl implements KeyService{
 
     private final KeyRepository repository;
+    private final BCryptPasswordEncoder encoder;
 
     @Override
-    public Optional<AdminKey> selectKeyById(Long id) {
+    public AdminKey createKey(String key) {
+        String passwordHash = encoder.encode(key);
+        AdminKey adminKey = new AdminKey(passwordHash);
+        repository.save(adminKey);
+        return adminKey;
+    }
+
+    @Override
+    public Optional<AdminKey> getKey() {
         try {
-            return repository.selectKeyValue(id);
-        }catch (DataBaseException e){
+            return repository.findById(1L);
+        }catch (Exception e){
             throw new DataBaseException();
         }
     }
 
     @Override
-    public boolean isMatch(String key) {
-        Optional<AdminKey> currentKey = selectKeyById(1L);
-
-        AdminKey adminKey = currentKey.orElseThrow(NotRegisteredAdminKey::new);
-
-        if (!adminKey.verifyAdminKey(key)) {
+    public boolean keyIsMatch(String requestKey) {
+        AdminKey adminKey = getKey()
+                .orElseThrow(() -> new NotRegisteredAdminKey());
+        if (!encoder.matches(requestKey, adminKey.getKey())){
             throw new WrongAdminKeyException();
         }
         return true;
     }
-
-
-
 
 }
 
