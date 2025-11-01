@@ -1,35 +1,22 @@
 package br.com.castudio.sistema_agendamento.domain.vo;
 
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
+import lombok.Getter;
+import lombok.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Converter(autoApply = true)
-public record PasswordVO(String value) implements AttributeConverter<PasswordVO, String> {
+@Value
+@Getter
+public class PasswordVO{
 
     private static BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder();
+    String value;
 
-
-    public PasswordVO{
-        value = ENCODER.encode(value);
+    public PasswordVO(String value){
+        this.value = ENCODER.encode(value);
     }
 
     public boolean isEqual(String password){
-        String hashePassword = ENCODER.encode(password);
-        return ENCODER.matches(hashePassword, this.value);
-    }
-
-    public String getPasswordValue(){
-        return this.value;
-    }
-
-    @Override
-    public String convertToDatabaseColumn(PasswordVO password) {
-        return password == null ? null : password.value();
-    }
-
-    @Override
-    public PasswordVO convertToEntityAttribute(String password) {
-        return password == null ? null : new PasswordVO(password);
+        String hashedPassword = ENCODER.encode(password);
+        return ENCODER.matches(hashedPassword, this.value);
     }
 }

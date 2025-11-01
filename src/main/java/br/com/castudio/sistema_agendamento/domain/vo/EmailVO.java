@@ -1,22 +1,14 @@
 package br.com.castudio.sistema_agendamento.domain.vo;
 
-import jakarta.persistence.AttributeConverter;
-import jakarta.persistence.Converter;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Value;
 
-@Converter(autoApply = true)
-public record EmailVO(String value) implements AttributeConverter<EmailVO, String> {
+@Value
+@Getter
+@AllArgsConstructor
+public class EmailVO{
 
-    public String getEmailValue(){
-        return this.value;
-    }
+    String value;
 
-    @Override
-    public String convertToDatabaseColumn(EmailVO email) {
-        return email == null ? null : email.value();
-    }
-
-    @Override
-    public EmailVO convertToEntityAttribute(String emailInDb) {
-        return emailInDb == null ? null : new EmailVO(emailInDb);
-    }
 }
