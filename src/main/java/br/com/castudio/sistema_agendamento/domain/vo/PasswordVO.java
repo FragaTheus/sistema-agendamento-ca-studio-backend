@@ -1,22 +1,27 @@
 package br.com.castudio.sistema_agendamento.domain.vo;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Embeddable;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.Value;
+import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Value
 @Getter
+@Embeddable
+@EqualsAndHashCode
+@NoArgsConstructor
 public class PasswordVO{
 
     private static BCryptPasswordEncoder ENCODER = new BCryptPasswordEncoder();
-    String value;
+    @Column(name = "password")
+    private String value;
 
     public PasswordVO(String value){
         this.value = ENCODER.encode(value);
     }
 
     public boolean isEqual(String password){
-        String hashedPassword = ENCODER.encode(password);
-        return ENCODER.matches(hashedPassword, this.value);
+        return ENCODER.matches(password, this.value);
     }
 }

@@ -14,35 +14,35 @@ public class CreateAdminRequestDto {
     @NotBlank
     @Pattern(
             regexp = "^[A-Za-zÀ-ÿ\\s]+$",
-            message = "Nome invalido"
+            message = "Nome nao pode conter caracteres especiais"
     )
     String name;
 
     @NotBlank
     @Pattern(
             regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",
-            message = "Email invalido"
+            message = "Formato de email invalido"
     )
     String email;
 
     @NotBlank
     @Pattern(
             regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,30}$",
-            message = "Senha invalida"
+            message = "Formato de senha invalida"
     )
     String password;
 
     @NotBlank
     @Pattern(
             regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,30}$",
-            message = "Senha invalida"
+            message = "Formato de senha invalida"
     )
     String confirmPassword;
 
     @NotBlank
     @Pattern(
             regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z0-9]).{8,30}$",
-            message = "Chave incorreta"
+            message = "Formato de chave invalida"
     )
     String adminKey;
 

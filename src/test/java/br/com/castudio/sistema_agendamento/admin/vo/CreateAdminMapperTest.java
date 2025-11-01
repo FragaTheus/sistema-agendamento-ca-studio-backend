@@ -1,10 +1,9 @@
-package br.com.castudio.sistema_agendamento.admin;
+package br.com.castudio.sistema_agendamento.admin.vo;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
 import br.com.castudio.sistema_agendamento.aplication.mapper.CreateAdminMapper;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 
@@ -16,10 +15,7 @@ public class CreateAdminMapperTest {
 
     private CreateAdminMapper mapper;
 
-    @BeforeEach
-    void setTup(){
-        mapper = new CreateAdminMapper();
-    }
+
 
     @Test
     void toEntitySucessfully(){
@@ -28,13 +24,15 @@ public class CreateAdminMapperTest {
                 "Nome",
                 "email@email.com",
                 "Senha@123",
-                "Senha@123");
+                "Senha@123",
+                "admin@123");
+
         Admin result = mapper.toEntity(requestDto);
 
         assertAll(
                 ()-> assertEquals(result.getName(), "Nome"),
-                ()-> assertEquals(result.getEmail().value(),"email@email.com"),
-                ()-> assertTrue(BCrypt.checkpw("Senha@123", result.getPassword().value()))
+                ()-> assertEquals(result.getEmail(),"email@email.com"),
+                ()-> assertTrue(BCrypt.checkpw("Senha@123", result.getPassword()))
         );
 
     }

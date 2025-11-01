@@ -1,7 +1,8 @@
 package br.com.castudio.sistema_agendamento.infra.handler;
 
-import br.com.castudio.sistema_agendamento.domain.exceptions.admin.EmailAlreadyExistException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.admin.PasswordDontMathcException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordDontMathcException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.WrongAdminKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -24,6 +25,11 @@ public class AdminControllerAdvice {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
 
+    @ExceptionHandler(WrongAdminKeyException.class)
+    public ResponseEntity<String> handleWrongAdminKey(WrongAdminKeyException ex){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationExceptions(MethodArgumentNotValidException ex) {
         Map<String, String> errors = new HashMap<>();
@@ -32,9 +38,10 @@ public class AdminControllerAdvice {
         for (FieldError error: fieldErrors){
             errors.put(error.getField(), error.getDefaultMessage());
         }
-
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errors);
     }
+
+
 
 
 }

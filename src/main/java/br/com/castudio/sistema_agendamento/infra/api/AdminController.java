@@ -1,9 +1,8 @@
 package br.com.castudio.sistema_agendamento.infra.api;
 
-import br.com.castudio.sistema_agendamento.aplication.cases.interfaces.CreateAdminCase;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminRequestDto;
 import br.com.castudio.sistema_agendamento.aplication.dto.CreateAdminResponseDto;
-import br.com.castudio.sistema_agendamento.aplication.service.interfaces.AdminService;
+import br.com.castudio.sistema_agendamento.aplication.service.CreateAdminService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,13 +19,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin-accounts")
 public class AdminController {
 
-    private CreateAdminCase createAdminCase;
+    private CreateAdminService createAdminService;
 
     @PostMapping
     public ResponseEntity<CreateAdminResponseDto> createAdmin(
             @Valid @RequestBody CreateAdminRequestDto requestDto
     ){
-        CreateAdminResponseDto admin = createAdminCase.createAdmin(requestDto);
+        CreateAdminResponseDto admin = createAdminService.createAdmin(requestDto);
         return ResponseEntity.status(HttpStatus.CREATED).body(admin);
     }
 }

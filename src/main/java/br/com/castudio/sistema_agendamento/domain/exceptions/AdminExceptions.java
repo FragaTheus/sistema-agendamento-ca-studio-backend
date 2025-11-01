@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.domain.exceptions.admin;
+package br.com.castudio.sistema_agendamento.domain.exceptions;
 
 
 public abstract class AdminExceptions extends RuntimeException{

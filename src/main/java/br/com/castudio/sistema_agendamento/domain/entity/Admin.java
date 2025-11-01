@@ -1,9 +1,7 @@
 package br.com.castudio.sistema_agendamento.domain.entity;
 
-import br.com.castudio.sistema_agendamento.domain.vo.EmailVO;
 import br.com.castudio.sistema_agendamento.domain.vo.PasswordVO;
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
 import lombok.*;
 
 import java.util.UUID;
@@ -22,39 +20,29 @@ public class Admin {
     private String name;
 
     @Column
-    @Convert(converter = EmailVO.class)
-    private EmailVO email;
+    private String email;
 
     @Column
-    @Convert(converter = EmailVO.class)
+    @Embedded
     private PasswordVO password;
 
     public Admin(UUID id, String name, String email, String password){
         this.uuid = UUID.randomUUID();
         this.name = name;
-        this.email = new EmailVO(email);
+        this.email = email;
         this.password = new PasswordVO(password);
     }
 
     public Admin(String name, String email, String password){
         this.uuid = UUID.randomUUID();
         this.name = name;
-        this.email = new EmailVO(email);
+        this.email = email;
         this.password = new PasswordVO(password);
 
     }
 
-
-    public String getAdminEmail(){
-        return this.email.getEmailValue();
-    }
-
-    public String getAdminsPassword(){
-        return this.password.getPasswordValue();
-    }
-
-    public void adminChangeEmail(String newEmail){
-        this.email = new EmailVO(newEmail);
+    public String getPassword(){
+        return password.getValue();
     }
 
     public void adminChangePassword(String newPassword){
