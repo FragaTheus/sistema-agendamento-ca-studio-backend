@@ -1,6 +1,6 @@
-package br.com.castudio.sistema_agendamento.aplication.service;
+package br.com.castudio.sistema_agendamento.aplication.service.user;
 
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountRequest;
+import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterRequest;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 import br.com.castudio.sistema_agendamento.domain.exceptions.DataBaseException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AdminServiceImpl implements AdminService{
+public class UserServiceImpl implements UserService {
 
     private final AdminRepository repository;
 
@@ -33,7 +33,7 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public void confirmPassword(CreateAccountRequest requestDto) {
+    public void confirmPassword(RegisterRequest requestDto) {
         if (!requestDto.getPassword().equals(requestDto.getConfirmPassword())){
             throw new PasswordDontMathcException();
         }

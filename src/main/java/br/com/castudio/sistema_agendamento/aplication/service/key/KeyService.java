@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.aplication.service;
+package br.com.castudio.sistema_agendamento.aplication.service.key;
 
 import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
 

@@ -2,32 +2,29 @@ package br.com.castudio.sistema_agendamento.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-
 import java.util.UUID;
 
 @Getter
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 public class Admin {
 
     @Id
-    @GeneratedValue
-    @Column
+    @GeneratedValue(generator = "UUID")
     private UUID id;
 
     @Setter
-    @Column
+    @Column(nullable = false)
     private String name;
 
     @Setter
-    @Column
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Setter
-    @Column
+    @Column(nullable = false)
     private String password;
-
 
 }

@@ -1,10 +1,10 @@
 package br.com.castudio.sistema_agendamento.admin.services;
 
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountRequest;
-import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountResponse;
-import br.com.castudio.sistema_agendamento.aplication.service.AdminService;
-import br.com.castudio.sistema_agendamento.aplication.service.CreateAdminServiceImpl;
-import br.com.castudio.sistema_agendamento.aplication.service.KeyService;
+import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterRequest;
+import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterResponse;
+import br.com.castudio.sistema_agendamento.aplication.service.user.UserService;
+import br.com.castudio.sistema_agendamento.aplication.service.login.LoginServiceImpl;
+import br.com.castudio.sistema_agendamento.aplication.service.key.KeyService;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,36 +18,36 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class CreateAdminServiceImplTest {
+class LoginServiceImplTest {
 
     @Mock
-    private AdminService adminService;
+    private UserService userService;
 
     @Mock
     private KeyService keyService;
 
     @InjectMocks
-    private CreateAdminServiceImpl createAdminService;
+    private LoginServiceImpl createAdminService;
 
     @Test
     void shouldCreateAdminSuccessfully() {
         // given
-        CreateAccountRequest dto = new CreateAccountRequest(
+        RegisterRequest dto = new RegisterRequest(
                 "Matheus", "math@email.com", "Senha@123", "Senha@123", "123456"
         );
         Admin admin = new Admin();
         Admin savedAdmin = new Admin();
         // mocks
-        when(adminService.saveAdmin(any(Admin.class))).thenReturn(savedAdmin);
+        when(userService.saveAdmin(any(Admin.class))).thenReturn(savedAdmin);
 
         // when
-        CreateAccountResponse response = createAdminService.createAdmin(dto);
+        RegisterResponse response = createAdminService.createAdmin(dto);
 
         // then
-        verify(adminService).validateEmail(dto.getEmail());
-        verify(adminService).confirmPassword(dto);
+        verify(userService).validateEmail(dto.getEmail());
+        verify(userService).confirmPassword(dto);
         verify(keyService).keyIsMatch(dto.getAdminKey());
-        verify(adminService).saveAdmin(any(Admin.class));
+        verify(userService).saveAdmin(any(Admin.class));
 
         assertNotNull(response);
     }

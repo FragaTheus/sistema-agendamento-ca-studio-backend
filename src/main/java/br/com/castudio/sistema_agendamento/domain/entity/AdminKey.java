@@ -7,6 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Entity
+@Table(name = "admin_key")
 @NoArgsConstructor
 public class AdminKey {
 
@@ -15,7 +16,7 @@ public class AdminKey {
     private Long id = 1L;
 
     @Setter
-    @Column(name = "admin_key")
+    @Column(name = "key")
     private String key;
 
     public AdminKey(String key){

@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.aplication.dto;
+package br.com.castudio.sistema_agendamento.aplication.dto.authentication.register;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -9,7 +9,7 @@ import lombok.Getter;
 @Getter
 @Builder
 @AllArgsConstructor
-public class CreateAccountRequest {
+public class RegisterRequest {
 
     @NotBlank
     @Pattern(

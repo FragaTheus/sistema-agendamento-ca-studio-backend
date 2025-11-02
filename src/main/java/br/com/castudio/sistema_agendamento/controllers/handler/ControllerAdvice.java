@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.controllers;
+package br.com.castudio.sistema_agendamento.controllers.handler;
 
 import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordDontMathcException;
@@ -6,12 +6,10 @@ import br.com.castudio.sistema_agendamento.domain.exceptions.WrongAdminKeyExcept
 import br.com.castudio.sistema_agendamento.domain.exceptions.WrongCredentialsException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import javax.naming.AuthenticationException;
 import java.util.*;
 
 @RestControllerAdvice
@@ -47,8 +45,5 @@ public class ControllerAdvice {
     public ResponseEntity<String> handleAuthException(WrongCredentialsException ex){
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(ex.getMessage());
     }
-
-
-
 
 }
