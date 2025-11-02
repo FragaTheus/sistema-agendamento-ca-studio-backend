@@ -4,6 +4,7 @@ import br.com.castudio.sistema_agendamento.aplication.dto.AuthenticationRequest;
 import br.com.castudio.sistema_agendamento.aplication.dto.AuthenticationResponse;
 import br.com.castudio.sistema_agendamento.configs.security.details.AdminDetailsServiceImpl;
 import br.com.castudio.sistema_agendamento.configs.security.jwt.JwtService;
+import br.com.castudio.sistema_agendamento.domain.exceptions.WrongCredentialsException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,14 +20,18 @@ public class AuthenticationServiceImpl implements AuthenticationService{
 
     @Override
     public AuthenticationResponse authenticate(AuthenticationRequest request) {
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-        );
+        try{
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+            );
 
-        var admin = adminDetailsService.loadUserByUsername(request.getEmail());
-        String token = jwtService.gererateToken(admin);
+            var admin = adminDetailsService.loadUserByUsername(request.getEmail());
+            String token = jwtService.gererateToken(admin);
 
-        return new AuthenticationResponse(token);
+            return new AuthenticationResponse(token);
+        }catch (Exception e){
+            throw new WrongCredentialsException();
+        }
 
     }
 

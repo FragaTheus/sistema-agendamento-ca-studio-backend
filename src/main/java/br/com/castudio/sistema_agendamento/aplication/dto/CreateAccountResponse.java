@@ -6,5 +6,5 @@ import lombok.Builder;
 import java.util.UUID;
 
 @Builder
-public record CreateAccountResponse(UUID uuid, String name, String email) {
+public record CreateAccountResponse(String token) {
 }

@@ -16,8 +16,4 @@ public class CreateAdminMapper {
                 .build();
     }
 
-    public static CreateAccountResponse toResponse(Admin admin){
-        return new CreateAccountResponse(admin.getId(), admin.getName(), admin.getEmail());
-    }
-
 }
