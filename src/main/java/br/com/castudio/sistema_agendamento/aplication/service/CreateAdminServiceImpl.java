@@ -5,6 +5,7 @@ import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountResponse;
 import br.com.castudio.sistema_agendamento.aplication.mapper.CreateAdminMapper;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 import lombok.AllArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,14 +14,18 @@ public class CreateAdminServiceImpl implements CreateAdminService{
 
     private final AdminService adminService;
     private final KeyService keyService;
+    private final BCryptPasswordEncoder encoder;
+
+
 
     @Override
     public CreateAccountResponse createAdmin(CreateAccountRequest requestDto) {
         adminService.validateEmail(requestDto.getEmail());
         adminService.confirmPassword(requestDto);
         keyService.keyIsMatch(requestDto.getAdminKey());
+        String hashedPassword = encoder.encode(requestDto.getConfirmPassword());
 
-        Admin admin = CreateAdminMapper.toEntity(requestDto);
+        Admin admin = CreateAdminMapper.toEntity(requestDto, hashedPassword);
         Admin savedAdmin = adminService.saveAdmin(admin);
         return CreateAdminMapper.toResponse(savedAdmin);
     }

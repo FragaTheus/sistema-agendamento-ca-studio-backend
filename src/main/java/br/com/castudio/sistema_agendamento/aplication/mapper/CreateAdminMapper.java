@@ -8,11 +8,11 @@ import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 
 public class CreateAdminMapper {
 
-    public static Admin toEntity(CreateAccountRequest requestDto){
+    public static Admin toEntity(CreateAccountRequest requestDto, String hashedPassword){
         return Admin.builder()
                 .name(requestDto.getName())
                 .email(requestDto.getEmail())
-                .password(requestDto.getConfirmPassword())
+                .password(hashedPassword)
                 .build();
     }
 

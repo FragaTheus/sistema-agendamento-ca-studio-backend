@@ -5,6 +5,7 @@ import br.com.castudio.sistema_agendamento.aplication.dto.CreateAccountResponse;
 
 public interface CreateAdminService {
 
+
     public CreateAccountResponse createAdmin(CreateAccountRequest requestDto);
 
 }

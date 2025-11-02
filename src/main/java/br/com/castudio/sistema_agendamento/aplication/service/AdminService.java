@@ -11,5 +11,4 @@ public interface AdminService {
 
     public void confirmPassword(CreateAccountRequest requestDto);
 
-
 }

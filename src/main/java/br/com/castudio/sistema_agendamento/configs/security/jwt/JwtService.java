@@ -4,13 +4,14 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Date;
 
 @Component
-public class JwtUtils {
+public class JwtService {
 
     private static final long EXPIRATED_TIME = 1000 * 60 * 60;
     private static final String SECRET = "minhaChaveSecretaSuperLongaPraJWT";
@@ -19,9 +20,9 @@ public class JwtUtils {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    public String gererateToken(String subject){
+    public String gererateToken(UserDetails userDetails){
         return Jwts.builder()
-                .setSubject(subject)
+                .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+EXPIRATED_TIME))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
