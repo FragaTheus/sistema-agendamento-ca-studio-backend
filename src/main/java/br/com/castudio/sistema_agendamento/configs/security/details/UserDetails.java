@@ -3,13 +3,12 @@ package br.com.castudio.sistema_agendamento.configs.security.details;
 import br.com.castudio.sistema_agendamento.domain.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
 
 @AllArgsConstructor
-public class AdminDetails implements UserDetails {
+public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
 
     private final User user;
 

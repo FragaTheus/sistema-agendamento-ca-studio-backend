@@ -5,7 +5,7 @@ import br.com.castudio.sistema_agendamento.domain.entity.User;
 import br.com.castudio.sistema_agendamento.domain.exceptions.DataBaseException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordDontMathcException;
-import br.com.castudio.sistema_agendamento.domain.repository.AdminRepository;
+import br.com.castudio.sistema_agendamento.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final AdminRepository repository;
+    private final UserRepository repository;
 
     @Override
-    public User saveAdmin(User user) {
+    public User saveUser(User user) {
         try{
             return repository.save(user);
         }catch (Exception e){

@@ -5,7 +5,7 @@ import br.com.castudio.sistema_agendamento.domain.entity.User;
 
 public interface UserService {
 
-    public User saveAdmin(User user);
+    public User saveUser(User user);
 
     public void validateEmail(String email);
 

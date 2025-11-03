@@ -2,7 +2,7 @@ package br.com.castudio.sistema_agendamento.aplication.service.authentication.re
 
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.recovery.RecoveryRequest;
 import br.com.castudio.sistema_agendamento.domain.entity.User;
-import br.com.castudio.sistema_agendamento.domain.repository.AdminRepository;
+import br.com.castudio.sistema_agendamento.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class RecoveryServiceImpl implements RecoveryService{
 
-    private final AdminRepository repository;
+    private final UserRepository repository;
     private final BCryptPasswordEncoder encoder;
 
     @Override

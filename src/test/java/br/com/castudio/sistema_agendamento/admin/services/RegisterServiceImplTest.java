@@ -38,7 +38,7 @@ class RegisterServiceImplTest {
         User user = new User();
         User savedUser = new User();
         // mocks
-        when(userService.saveAdmin(any(User.class))).thenReturn(savedUser);
+        when(userService.saveUser(any(User.class))).thenReturn(savedUser);
 
         // when
         RegisterResponse response = createAdminService.createAdmin(dto);
@@ -47,7 +47,7 @@ class RegisterServiceImplTest {
         verify(userService).validateEmail(dto.getEmail());
         verify(userService).confirmPassword(dto);
         verify(keyService).keyIsMatch(dto.getAdminKey());
-        verify(userService).saveAdmin(any(User.class));
+        verify(userService).saveUser(any(User.class));
 
         assertNotNull(response);
     }

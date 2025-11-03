@@ -2,8 +2,7 @@ package br.com.castudio.sistema_agendamento.aplication.service.authentication.lo
 
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginResponse;
-import br.com.castudio.sistema_agendamento.aplication.service.emailsender.EmailSenderService;
-import br.com.castudio.sistema_agendamento.configs.security.details.AdminDetailsServiceImpl;
+import br.com.castudio.sistema_agendamento.configs.security.details.UserDetailsServiceImpl;
 import br.com.castudio.sistema_agendamento.configs.security.jwt.JwtService;
 import br.com.castudio.sistema_agendamento.domain.exceptions.WrongCredentialsException;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,7 @@ import org.springframework.stereotype.Service;
 public class LoginServiceImpl implements LoginService {
 
     private final JwtService jwtService;
-    private final AdminDetailsServiceImpl adminDetailsService;
+    private final UserDetailsServiceImpl adminDetailsService;
     private final AuthenticationManager authenticationManager;
 
     @Override
