@@ -1,8 +1,8 @@
-package br.com.castudio.sistema_agendamento.aplication.service.login;
+package br.com.castudio.sistema_agendamento.aplication.service.authentication.register;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterRequest;
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterResponse;
-import br.com.castudio.sistema_agendamento.aplication.mapper.login.LoginMapper;
+import br.com.castudio.sistema_agendamento.aplication.mapper.login.AdminMapper;
 import br.com.castudio.sistema_agendamento.aplication.service.key.KeyService;
 import br.com.castudio.sistema_agendamento.aplication.service.user.UserService;
 import br.com.castudio.sistema_agendamento.configs.security.details.AdminDetails;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class LoginServiceImpl implements LoginService {
+public class RegisterServiceImpl implements RegisterService {
 
     private final UserService userService;
     private final KeyService keyService;
@@ -28,7 +28,7 @@ public class LoginServiceImpl implements LoginService {
         keyService.keyIsMatch(requestDto.getAdminKey());
         String hashedPassword = encoder.encode(requestDto.getConfirmPassword());
 
-        Admin admin = LoginMapper.toEntity(requestDto, hashedPassword);
+        Admin admin = AdminMapper.registerToEntity(requestDto, hashedPassword);
         Admin savedAdmin = userService.saveAdmin(admin);
         var adminDetail = new AdminDetails(savedAdmin);
         String token = jwtService.gererateToken(adminDetail);

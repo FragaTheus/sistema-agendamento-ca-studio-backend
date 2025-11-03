@@ -3,7 +3,7 @@ package br.com.castudio.sistema_agendamento.admin.services;
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterRequest;
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterResponse;
 import br.com.castudio.sistema_agendamento.aplication.service.user.UserService;
-import br.com.castudio.sistema_agendamento.aplication.service.login.LoginServiceImpl;
+import br.com.castudio.sistema_agendamento.aplication.service.authentication.register.RegisterServiceImpl;
 import br.com.castudio.sistema_agendamento.aplication.service.key.KeyService;
 import br.com.castudio.sistema_agendamento.domain.entity.Admin;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-class LoginServiceImplTest {
+class RegisterServiceImplTest {
 
     @Mock
     private UserService userService;
@@ -27,7 +27,7 @@ class LoginServiceImplTest {
     private KeyService keyService;
 
     @InjectMocks
-    private LoginServiceImpl createAdminService;
+    private RegisterServiceImpl createAdminService;
 
     @Test
     void shouldCreateAdminSuccessfully() {

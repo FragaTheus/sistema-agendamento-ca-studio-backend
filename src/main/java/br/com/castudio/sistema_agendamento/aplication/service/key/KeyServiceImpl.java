@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.aplication.service.key;
 
-import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
+import br.com.castudio.sistema_agendamento.domain.entity.Key;
 import br.com.castudio.sistema_agendamento.domain.exceptions.DataBaseException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.NotRegisteredAdminKey;
 import br.com.castudio.sistema_agendamento.domain.exceptions.WrongAdminKeyException;
@@ -19,15 +19,15 @@ public class KeyServiceImpl implements KeyService{
     private final BCryptPasswordEncoder encoder;
 
     @Override
-    public AdminKey createKey(String key) {
+    public Key createKey(String key) {
         String passwordHash = encoder.encode(key);
-        AdminKey adminKey = new AdminKey(passwordHash);
+        Key adminKey = new Key(passwordHash);
         repository.save(adminKey);
         return adminKey;
     }
 
     @Override
-    public Optional<AdminKey> getKey() {
+    public Optional<Key> getKey() {
         try {
             return repository.findById(1L);
         }catch (Exception e){
@@ -37,9 +37,9 @@ public class KeyServiceImpl implements KeyService{
 
     @Override
     public boolean keyIsMatch(String requestKey) {
-        AdminKey adminKey = getKey()
+        Key key = getKey()
                 .orElseThrow(() -> new NotRegisteredAdminKey());
-        if (!encoder.matches(requestKey, adminKey.getKey())){
+        if (!encoder.matches(requestKey, key.getKey())){
             throw new WrongAdminKeyException();
         }
         return true;

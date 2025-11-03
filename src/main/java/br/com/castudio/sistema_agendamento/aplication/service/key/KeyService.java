@@ -1,14 +1,14 @@
 package br.com.castudio.sistema_agendamento.aplication.service.key;
 
-import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
+import br.com.castudio.sistema_agendamento.domain.entity.Key;
 
 import java.util.Optional;
 
 public interface KeyService {
 
-    public AdminKey createKey(String requestKey);
+    public Key createKey(String requestKey);
 
-    public Optional<AdminKey> getKey();
+    public Optional<Key> getKey();
 
     public boolean keyIsMatch(String requestKey);
 

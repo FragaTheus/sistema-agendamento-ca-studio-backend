@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.aplication.service.authentication;
+package br.com.castudio.sistema_agendamento.aplication.service.authentication.login;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginResponse;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-public class AuthenticationServiceImpl implements AuthenticationService{
+public class LoginServiceImpl implements LoginService {
 
     private final JwtService jwtService;
     private final AdminDetailsServiceImpl adminDetailsService;

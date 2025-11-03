@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.configs.init;
 
 import br.com.castudio.sistema_agendamento.aplication.service.key.KeyService;
-import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
+import br.com.castudio.sistema_agendamento.domain.entity.Key;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -24,7 +24,7 @@ public class KeyInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (keyService.getKey().isEmpty()) {
-            AdminKey firstKey = keyService.createKey(adminKeyValue);
+            Key firstKey = keyService.createKey(adminKeyValue);
         }
     }
 }

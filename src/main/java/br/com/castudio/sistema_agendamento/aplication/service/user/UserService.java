@@ -11,4 +11,6 @@ public interface UserService {
 
     public void confirmPassword(RegisterRequest requestDto);
 
+    public void changePassword(String password);
+
 }

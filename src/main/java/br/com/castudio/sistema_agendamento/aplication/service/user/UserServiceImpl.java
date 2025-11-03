@@ -39,7 +39,9 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public void changePassword(String password) {
 
-
+    }
 
 }

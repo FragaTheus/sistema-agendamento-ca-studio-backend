@@ -7,24 +7,20 @@ import lombok.Setter;
 
 @Getter
 @Entity
-@Table(name = "admin_key")
+@Table(name = "keys")
 @NoArgsConstructor
-public class AdminKey {
+public class Key {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id = 1L;
 
     @Setter
-    @Column(name = "key")
+    @Column(name = "admin_key")
     private String key;
 
-    public AdminKey(String key){
+    public Key(String key){
         this.key = key;
     }
-
-
-
-
 
 }

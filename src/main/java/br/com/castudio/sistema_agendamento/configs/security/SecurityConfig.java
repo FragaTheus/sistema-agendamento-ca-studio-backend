@@ -28,7 +28,7 @@ public class SecurityConfig {
                 .headers(header -> header.frameOptions(frame -> frame.disable()))
                 .authorizeHttpRequests(
                         auth-> auth.requestMatchers(
-                                "/auth/**", "/admin-accounts/**", "/h2-console/**").permitAll()
+                                "/api/v1/auth/**", "/h2-console/**").permitAll()
                                 .anyRequest().authenticated()
                 ).addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
