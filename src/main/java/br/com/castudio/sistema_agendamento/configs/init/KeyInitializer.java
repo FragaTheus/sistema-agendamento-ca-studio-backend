@@ -12,7 +12,7 @@ public class KeyInitializer implements CommandLineRunner {
 
     private final KeyService keyService;
 
-    @Value("${admin.key}")
+    @Value("${user.key}")
     private String adminKeyValue;
 
     public KeyInitializer(KeyService keyService) {

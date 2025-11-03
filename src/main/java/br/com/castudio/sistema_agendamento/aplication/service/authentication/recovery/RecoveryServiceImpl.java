@@ -17,12 +17,9 @@ public class RecoveryServiceImpl implements RecoveryService{
     @Override
     public void recoveryPassword(RecoveryRequest request) {
 
-        User user = repository.findByEmail(request.getEmail()).orElseThrow(()-> new RuntimeException("Email nao existe no sistema"));
-
+        User user = userService.ensureUserExists(request.getEmail());
         String hashedNewPassword = userService.encodePassword(request.getNewPassword());
-
         user.setPassword(hashedNewPassword);
-
         userService.saveUser(user);
 
     }

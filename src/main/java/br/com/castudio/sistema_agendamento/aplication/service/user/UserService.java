@@ -15,8 +15,12 @@ public interface UserService {
 
     public void confirmPassword(RegisterRequest requestDto);
 
-    public void changePassword(String currentPassword, String newPassword);
+    public boolean passwordIsMatch(String password, User user);
+
+    public void changePassword(String newPassword, User user);
 
     public String encodePassword(String password);
+
+    public void changeName(String name, User user);
 
 }

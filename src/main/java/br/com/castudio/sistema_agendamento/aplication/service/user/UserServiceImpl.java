@@ -51,11 +51,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(String currentPassword, String newPassword) {
-        //Capturar nova senha
-        //Confirmar nova senha com senha na base
-        //Hashar nova senha
-        //Retornar nova senha
+    public boolean passwordIsMatch(String password, User user) {
+        return encoder.matches(password, user.getPassword());
+    }
+
+    @Override
+    public void changePassword(String newPassword, User user) {
+        user.setPassword(newPassword);
     }
 
     @Override
@@ -63,5 +65,9 @@ public class UserServiceImpl implements UserService {
         return encoder.encode(password);
     }
 
+    @Override
+    public void changeName(String name, User user) {
+        user.setName(name);
+    }
 
 }
