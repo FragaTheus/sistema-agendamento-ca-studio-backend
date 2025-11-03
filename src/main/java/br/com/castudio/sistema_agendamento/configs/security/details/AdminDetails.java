@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.configs.security.details;
 
-import br.com.castudio.sistema_agendamento.domain.entity.Admin;
+import br.com.castudio.sistema_agendamento.domain.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class AdminDetails implements UserDetails {
 
-    private final Admin admin;
+    private final User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -20,12 +20,12 @@ public class AdminDetails implements UserDetails {
 
     @Override
     public String getPassword() {
-        return admin.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return admin.getEmail();
+        return user.getEmail();
     }
 
     @Override

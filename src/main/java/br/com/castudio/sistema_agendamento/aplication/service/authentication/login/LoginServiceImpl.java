@@ -2,6 +2,7 @@ package br.com.castudio.sistema_agendamento.aplication.service.authentication.lo
 
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginResponse;
+import br.com.castudio.sistema_agendamento.aplication.service.emailsender.EmailSenderService;
 import br.com.castudio.sistema_agendamento.configs.security.details.AdminDetailsServiceImpl;
 import br.com.castudio.sistema_agendamento.configs.security.jwt.JwtService;
 import br.com.castudio.sistema_agendamento.domain.exceptions.WrongCredentialsException;

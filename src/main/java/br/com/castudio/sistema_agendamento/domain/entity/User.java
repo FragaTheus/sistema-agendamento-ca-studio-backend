@@ -9,7 +9,7 @@ import java.util.UUID;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Admin {
+public class User {
 
     @Id
     @GeneratedValue(generator = "UUID")

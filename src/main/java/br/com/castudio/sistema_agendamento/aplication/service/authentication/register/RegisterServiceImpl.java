@@ -7,7 +7,7 @@ import br.com.castudio.sistema_agendamento.aplication.service.key.KeyService;
 import br.com.castudio.sistema_agendamento.aplication.service.user.UserService;
 import br.com.castudio.sistema_agendamento.configs.security.details.AdminDetails;
 import br.com.castudio.sistema_agendamento.configs.security.jwt.JwtService;
-import br.com.castudio.sistema_agendamento.domain.entity.Admin;
+import br.com.castudio.sistema_agendamento.domain.entity.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,9 +28,9 @@ public class RegisterServiceImpl implements RegisterService {
         keyService.keyIsMatch(requestDto.getAdminKey());
         String hashedPassword = encoder.encode(requestDto.getConfirmPassword());
 
-        Admin admin = AdminMapper.registerToEntity(requestDto, hashedPassword);
-        Admin savedAdmin = userService.saveAdmin(admin);
-        var adminDetail = new AdminDetails(savedAdmin);
+        User user = AdminMapper.registerToEntity(requestDto, hashedPassword);
+        User savedUser = userService.saveAdmin(user);
+        var adminDetail = new AdminDetails(savedUser);
         String token = jwtService.gererateToken(adminDetail);
         return new RegisterResponse(token);
     }
