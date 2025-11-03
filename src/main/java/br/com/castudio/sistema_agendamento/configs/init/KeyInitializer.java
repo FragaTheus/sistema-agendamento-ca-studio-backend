@@ -24,7 +24,7 @@ public class KeyInitializer implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         if (keyService.getKey().isEmpty()) {
-            Key firstKey = keyService.createKey(adminKeyValue);
+            Key firstKey = keyService.insertKey(adminKeyValue);
         }
     }
 }

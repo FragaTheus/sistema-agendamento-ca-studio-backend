@@ -5,7 +5,6 @@ import br.com.castudio.sistema_agendamento.aplication.dto.authentication.registe
 
 public interface RegisterService {
 
-
-    public RegisterResponse createAdmin(RegisterRequest requestDto);
+    public RegisterResponse createAdmin(RegisterRequest request);
 
 }

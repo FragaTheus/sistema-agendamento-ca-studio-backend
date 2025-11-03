@@ -2,7 +2,6 @@ package br.com.castudio.sistema_agendamento.admin.services;
 
 import br.com.castudio.sistema_agendamento.aplication.service.key.KeyServiceImpl;
 import br.com.castudio.sistema_agendamento.domain.entity.Key;
-import br.com.castudio.sistema_agendamento.domain.exceptions.WrongAdminKeyException;
 import br.com.castudio.sistema_agendamento.domain.repository.KeyRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

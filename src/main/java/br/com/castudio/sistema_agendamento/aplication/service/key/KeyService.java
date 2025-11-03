@@ -6,7 +6,7 @@ import java.util.Optional;
 
 public interface KeyService {
 
-    public Key createKey(String requestKey);
+    public Key insertKey(String requestKey);
 
     public Optional<Key> getKey();
 

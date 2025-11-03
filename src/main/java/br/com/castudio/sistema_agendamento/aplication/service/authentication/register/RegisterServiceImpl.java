@@ -17,15 +17,14 @@ public class RegisterServiceImpl implements RegisterService {
 
     private final UserService userService;
     private final KeyService keyService;
-    private final BCryptPasswordEncoder encoder;
     private final JwtService jwtService;
 
     @Override
     public RegisterResponse createAdmin(RegisterRequest request) {
-        userService.validateEmail(request.getEmail());
+        userService.ensureEmailNotRegistered(request.getEmail());
         userService.confirmPassword(request);
         keyService.keyIsMatch(request.getAdminKey());
-        String hashedPassword = encoder.encode(request.getConfirmPassword());
+        String hashedPassword = userService.encodePassword(request.getConfirmPassword());
 
         User user = User.builder()
                 .name(request.getName())
@@ -37,6 +36,5 @@ public class RegisterServiceImpl implements RegisterService {
         UserDetails userDetails = new UserDetails(savedUser);
         String token = jwtService.gererateToken(userDetails);
         return new RegisterResponse(token);
-
     }
 }

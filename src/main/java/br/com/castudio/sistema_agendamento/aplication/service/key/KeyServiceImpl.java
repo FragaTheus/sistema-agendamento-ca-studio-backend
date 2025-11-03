@@ -1,15 +1,15 @@
 package br.com.castudio.sistema_agendamento.aplication.service.key;
 
 import br.com.castudio.sistema_agendamento.domain.entity.Key;
-import br.com.castudio.sistema_agendamento.domain.exceptions.DataBaseException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.NotRegisteredAdminKey;
-import br.com.castudio.sistema_agendamento.domain.exceptions.WrongAdminKeyException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.business.WrongKeyException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.system.DataBaseException;
 import br.com.castudio.sistema_agendamento.domain.repository.KeyRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 @Service
 @AllArgsConstructor
@@ -19,11 +19,17 @@ public class KeyServiceImpl implements KeyService{
     private final BCryptPasswordEncoder encoder;
 
     @Override
-    public Key createKey(String key) {
-        String passwordHash = encoder.encode(key);
-        Key adminKey = new Key(passwordHash);
-        repository.save(adminKey);
-        return adminKey;
+    public Key insertKey(String key) {
+
+        try{
+            String passwordHash = encoder.encode(key);
+            Key adminKey = new Key(passwordHash);
+            repository.save(adminKey);
+            return adminKey;
+        }catch (Exception e){
+            throw new DataBaseException();
+        }
+
     }
 
     @Override
@@ -38,9 +44,9 @@ public class KeyServiceImpl implements KeyService{
     @Override
     public boolean keyIsMatch(String requestKey) {
         Key key = getKey()
-                .orElseThrow(() -> new NotRegisteredAdminKey());
+                .orElseThrow(() -> new DataBaseException());
         if (!encoder.matches(requestKey, key.getKey())){
-            throw new WrongAdminKeyException();
+            throw new WrongKeyException();
         }
         return true;
     }

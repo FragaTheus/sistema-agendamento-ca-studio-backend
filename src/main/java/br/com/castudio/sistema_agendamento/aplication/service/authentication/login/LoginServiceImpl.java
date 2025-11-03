@@ -4,7 +4,7 @@ import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.L
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginResponse;
 import br.com.castudio.sistema_agendamento.configs.security.details.UserDetailsServiceImpl;
 import br.com.castudio.sistema_agendamento.configs.security.jwt.JwtService;
-import br.com.castudio.sistema_agendamento.domain.exceptions.WrongCredentialsException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.business.CredentialsException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -31,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
 
             return new LoginResponse(token);
         }catch (Exception e){
-            throw new WrongCredentialsException();
+            throw new CredentialsException();
         }
 
     }

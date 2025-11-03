@@ -1,10 +1,10 @@
 package br.com.castudio.sistema_agendamento.controllers.handler;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.message.MessageResponse;
-import br.com.castudio.sistema_agendamento.domain.exceptions.EmailAlreadyExistException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordDontMathcException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.WrongAdminKeyException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.WrongCredentialsException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.business.CredentialsException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.business.EmailRegisteredException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.business.PasswordsDontMatchException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.business.WrongKeyException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -16,20 +16,20 @@ import java.util.*;
 @RestControllerAdvice
 public class ControllerAdvice {
 
-    @ExceptionHandler(EmailAlreadyExistException.class)
-    public ResponseEntity<MessageResponse<Void>> handleRegisteredEmail(EmailAlreadyExistException ex){
-        var response = MessageResponse.<Void>error(ex.getMessage());
+    @ExceptionHandler(EmailRegisteredException.class)
+    public ResponseEntity<MessageResponse<Void>> handleRegisteredEmail(EmailRegisteredException ex){
+        var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 
-    @ExceptionHandler(PasswordDontMathcException.class)
-    public ResponseEntity<MessageResponse<Void>> handleConfirmPasswordDontMatch(PasswordDontMathcException ex){
+    @ExceptionHandler(PasswordsDontMatchException.class)
+    public ResponseEntity<MessageResponse<Void>> handleConfirmPasswordDontMatch(PasswordsDontMatchException ex){
         var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    @ExceptionHandler(WrongAdminKeyException.class)
-    public ResponseEntity<MessageResponse<Void>> handleWrongAdminKey(WrongAdminKeyException ex){
+    @ExceptionHandler(WrongKeyException.class)
+    public ResponseEntity<MessageResponse<Void>> handleWrongAdminKey(WrongKeyException ex){
         var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
@@ -49,9 +49,9 @@ public class ControllerAdvice {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
-    @ExceptionHandler(WrongCredentialsException.class)
-    public ResponseEntity<MessageResponse<Void>> handleAuthException(WrongCredentialsException ex){
-        var response = MessageResponse.<Void>error(ex.getMessage());
+    @ExceptionHandler(CredentialsException.class)
+    public ResponseEntity<MessageResponse<Void>> handleAuthException(CredentialsException ex){
+        var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 

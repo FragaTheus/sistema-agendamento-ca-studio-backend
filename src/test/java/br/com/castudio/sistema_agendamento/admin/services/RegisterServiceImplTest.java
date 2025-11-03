@@ -31,20 +31,17 @@ class RegisterServiceImplTest {
 
     @Test
     void shouldCreateAdminSuccessfully() {
-        // given
         RegisterRequest dto = new RegisterRequest(
                 "Matheus", "math@email.com", "Senha@123", "Senha@123", "123456"
         );
         User user = new User();
         User savedUser = new User();
-        // mocks
+
         when(userService.saveUser(any(User.class))).thenReturn(savedUser);
 
-        // when
         RegisterResponse response = createAdminService.createAdmin(dto);
 
-        // then
-        verify(userService).validateEmail(dto.getEmail());
+        verify(userService).ensureEmailNotRegistered(dto.getEmail());
         verify(userService).confirmPassword(dto);
         verify(keyService).keyIsMatch(dto.getAdminKey());
         verify(userService).saveUser(any(User.class));
