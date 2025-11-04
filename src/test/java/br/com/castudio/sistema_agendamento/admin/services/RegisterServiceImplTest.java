@@ -34,8 +34,8 @@ class RegisterServiceImplTest {
         RegisterRequest dto = new RegisterRequest(
                 "Matheus", "math@email.com", "Senha@123", "Senha@123", "123456"
         );
-        User user = new User();
-        User savedUser = new User();
+        User user = new User("Matheus", "email@email.com", "pass");
+        User savedUser = new User("Matheus", "email@email.com", "pass");
 
         when(userService.saveUser(any(User.class))).thenReturn(savedUser);
 

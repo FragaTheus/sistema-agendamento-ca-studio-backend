@@ -25,11 +25,7 @@ public class RegisterServiceImpl implements RegisterService {
         keyService.keyIsMatch(request.getAdminKey());
         String hashedPassword = userService.encodePassword(request.getConfirmPassword());
 
-        User user = User.builder()
-                .name(request.getName())
-                .email(request.getEmail())
-                .password(hashedPassword)
-                .build();
+        User user = new User(request.getName(), request.getEmail(), hashedPassword);
 
         User savedUser = userService.saveUser(user);
         UserDetails userDetails = new UserDetails(savedUser);

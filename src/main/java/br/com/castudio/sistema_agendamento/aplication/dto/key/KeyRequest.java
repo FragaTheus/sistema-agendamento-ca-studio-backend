@@ -1,4 +1,8 @@
 package br.com.castudio.sistema_agendamento.aplication.dto.key;
 
-public class KeyRequest {
+import lombok.Builder;
+
+@Builder
+public record KeyRequest(String currentKey, String newKey) {
+
 }

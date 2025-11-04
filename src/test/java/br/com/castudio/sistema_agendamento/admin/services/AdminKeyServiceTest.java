@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.admin.services;
 
 import br.com.castudio.sistema_agendamento.aplication.service.key.KeyServiceImpl;
-import br.com.castudio.sistema_agendamento.domain.entity.Key;
+import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
 import br.com.castudio.sistema_agendamento.domain.repository.KeyRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class KeyServiceTest {
+public class AdminKeyServiceTest {
 
     @Mock
     private KeyRepository repository;
@@ -29,9 +29,9 @@ public class KeyServiceTest {
         String rightInputKey = "Chave@123";
         String wrongInputKey = "Errado@123";
 
-        Key dbKey = new Key("Chave@123");
+        AdminKey dbAdminKey = new AdminKey("Chave@123");
 
-        when(repository.findById(1L)).thenReturn(Optional.of(dbKey));
+        when(repository.findById(1L)).thenReturn(Optional.of(dbAdminKey));
 
 
         assertAll(

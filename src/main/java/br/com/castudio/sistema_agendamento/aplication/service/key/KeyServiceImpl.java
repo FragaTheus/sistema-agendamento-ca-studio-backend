@@ -1,6 +1,7 @@
 package br.com.castudio.sistema_agendamento.aplication.service.key;
 
-import br.com.castudio.sistema_agendamento.domain.entity.Key;
+import br.com.castudio.sistema_agendamento.aplication.dto.key.KeyRequest;
+import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.WrongKeyException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.system.DataBaseException;
 import br.com.castudio.sistema_agendamento.domain.repository.KeyRepository;
@@ -9,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.zip.DataFormatException;
 
 @Service
 @AllArgsConstructor
@@ -19,11 +19,11 @@ public class KeyServiceImpl implements KeyService{
     private final BCryptPasswordEncoder encoder;
 
     @Override
-    public Key insertKey(String key) {
+    public AdminKey insertKey(String key) {
 
         try{
             String passwordHash = encoder.encode(key);
-            Key adminKey = new Key(passwordHash);
+            AdminKey adminKey = new AdminKey(passwordHash);
             repository.save(adminKey);
             return adminKey;
         }catch (Exception e){
@@ -33,7 +33,7 @@ public class KeyServiceImpl implements KeyService{
     }
 
     @Override
-    public Optional<Key> getKey() {
+    public Optional<AdminKey> getKey() {
         try {
             return repository.findById(1L);
         }catch (Exception e){
@@ -43,12 +43,25 @@ public class KeyServiceImpl implements KeyService{
 
     @Override
     public boolean keyIsMatch(String requestKey) {
-        Key key = getKey()
+        AdminKey adminKey = getKey()
                 .orElseThrow(() -> new DataBaseException());
-        if (!encoder.matches(requestKey, key.getKey())){
+        if (!encoder.matches(requestKey, adminKey.getKey())){
             throw new WrongKeyException();
         }
         return true;
+    }
+
+    @Override
+    public AdminKey setKey(KeyRequest request) {
+
+        if (!keyIsMatch(request.currentKey())){
+            throw new WrongKeyException();
+        }
+        String hashedValue = encoder.encode(request.newKey());
+        AdminKey newAdminKey =  new AdminKey(hashedValue);
+        repository.save(newAdminKey);
+        return newAdminKey;
+
     }
 
 }

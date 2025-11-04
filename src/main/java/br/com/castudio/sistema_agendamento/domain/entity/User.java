@@ -2,35 +2,42 @@ package br.com.castudio.sistema_agendamento.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
-import java.util.Collection;
-import java.util.List;
 import java.util.UUID;
 
-@Getter
 @Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "users")
 public class User {
 
+    protected User(){}
+
+    public User(String name, String email, String hashedPassword){
+        this.name = name;
+        this.email = email;
+        this.password = hashedPassword;
+    }
+
+    public User(UUID id, String name, String email, String password) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
     @Id
-    @GeneratedValue(generator = "UUID")
+    @GeneratedValue
+    @Getter
     private UUID id;
 
+    @Getter
     @Setter
-    @Column(nullable = false)
     private String name;
 
-    @Setter
-    @Column(nullable = false, unique = true)
-    private String email;
+    @Getter
+    private  String email;
 
+    @Getter
     @Setter
-    @Column(nullable = false)
     private String password;
+
 
 }
