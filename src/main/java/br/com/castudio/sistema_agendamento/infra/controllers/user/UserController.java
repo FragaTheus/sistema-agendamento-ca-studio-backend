@@ -1,9 +1,9 @@
-package br.com.castudio.sistema_agendamento.controllers.user;
+package br.com.castudio.sistema_agendamento.infra.controllers.user;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.message.MessageResponse;
 import br.com.castudio.sistema_agendamento.aplication.dto.profile.ProfileRequest;
 import br.com.castudio.sistema_agendamento.aplication.service.profile.UserProfileService;
-import br.com.castudio.sistema_agendamento.configs.security.details.UserDetails;
+import br.com.castudio.sistema_agendamento.infra.configs.security.details.UserDetails;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

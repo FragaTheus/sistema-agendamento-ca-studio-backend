@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.controllers.handler;
+package br.com.castudio.sistema_agendamento.infra.controllers.handler;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.message.MessageResponse;
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.CredentialsException;

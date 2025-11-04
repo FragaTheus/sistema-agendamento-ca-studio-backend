@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.configs.init;
+package br.com.castudio.sistema_agendamento.infra.configs.init;
 
 import br.com.castudio.sistema_agendamento.aplication.service.key.KeyService;
 import br.com.castudio.sistema_agendamento.domain.entity.Key;

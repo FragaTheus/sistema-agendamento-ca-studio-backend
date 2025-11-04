@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.configs.security.details;
+package br.com.castudio.sistema_agendamento.infra.configs.security.details;
 
 import br.com.castudio.sistema_agendamento.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,10 +14,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public org.springframework.security.core.userdetails.UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        var admin = repository.findByEmail(username)
-                .orElseThrow(()-> new UsernameNotFoundException("Usuario nao encontrato" + username));
+        var user = repository.findByEmail(username)
+                .orElseThrow(()-> new UsernameNotFoundException("Credenciais invalidas"));
 
-        return new UserDetails(admin);
+        return new UserDetails(user);
     }
 
 }

@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.configs.security.details;
+package br.com.castudio.sistema_agendamento.infra.configs.security.details;
 
 import br.com.castudio.sistema_agendamento.domain.entity.User;
 import lombok.AllArgsConstructor;
@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 public class UserDetails implements org.springframework.security.core.userdetails.UserDetails {
@@ -27,25 +28,5 @@ public class UserDetails implements org.springframework.security.core.userdetail
         return user.getEmail();
     }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 }

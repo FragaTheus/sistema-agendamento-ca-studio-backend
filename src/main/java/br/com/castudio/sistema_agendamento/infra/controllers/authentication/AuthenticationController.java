@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.controllers.authentication;
+package br.com.castudio.sistema_agendamento.infra.controllers.authentication;
 
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.login.LoginResponse;

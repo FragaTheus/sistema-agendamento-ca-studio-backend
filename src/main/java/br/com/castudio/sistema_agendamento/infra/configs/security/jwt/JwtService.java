@@ -1,8 +1,6 @@
-package br.com.castudio.sistema_agendamento.configs.security.jwt;
+package br.com.castudio.sistema_agendamento.infra.configs.security.jwt;
 
-import br.com.castudio.sistema_agendamento.domain.exceptions.system.jwt.ExtractTokenException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.system.jwt.GenerateTokenException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.system.jwt.ValidateTokenException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.system.InternalErrorException;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -23,7 +21,7 @@ public class JwtService {
         return Keys.hmacShaKeyFor(SECRET.getBytes());
     }
 
-    public String gererateToken(UserDetails userDetails) throws GenerateTokenException {
+    public String gererateToken(UserDetails userDetails) throws InternalErrorException {
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date())
@@ -32,7 +30,7 @@ public class JwtService {
                 .compact();
     }
 
-    public boolean validateToken(String token, String subject) throws ValidateTokenException {
+    public boolean validateToken(String token, String subject) throws InternalErrorException {
         try{
             String tokenSubject = Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())
@@ -47,7 +45,7 @@ public class JwtService {
         }
     }
 
-    public String extractSubject(String token) throws ExtractTokenException {
+    public String extractSubject(String token) throws InternalErrorException {
         return Jwts.parserBuilder()
                 .setSigningKey(getSigningKey())
                 .build()

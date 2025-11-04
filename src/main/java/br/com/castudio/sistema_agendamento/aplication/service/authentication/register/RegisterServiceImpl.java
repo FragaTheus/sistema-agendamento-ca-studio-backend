@@ -4,11 +4,10 @@ import br.com.castudio.sistema_agendamento.aplication.dto.authentication.registe
 import br.com.castudio.sistema_agendamento.aplication.dto.authentication.register.RegisterResponse;
 import br.com.castudio.sistema_agendamento.aplication.service.key.KeyService;
 import br.com.castudio.sistema_agendamento.aplication.service.user.UserService;
-import br.com.castudio.sistema_agendamento.configs.security.details.UserDetails;
-import br.com.castudio.sistema_agendamento.configs.security.jwt.JwtService;
+import br.com.castudio.sistema_agendamento.infra.configs.security.details.UserDetails;
+import br.com.castudio.sistema_agendamento.infra.configs.security.jwt.JwtService;
 import br.com.castudio.sistema_agendamento.domain.entity.User;
 import lombok.AllArgsConstructor;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
