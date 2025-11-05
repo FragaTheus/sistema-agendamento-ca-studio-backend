@@ -19,14 +19,14 @@ public class LoginServiceImpl implements LoginService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public String authenticate() {
+    public String authenticate(LoginCommand command) {
 
         try{
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword())
+                    new UsernamePasswordAuthenticationToken(command.useremail(), command.userPassword())
             );
 
-            UserDetails user = adminDetailsService.loadUserByUsername(userDetails.getUsername());
+            UserDetails user = adminDetailsService.loadUserByUsername(command.useremail());
             return jwtService.gererateToken(user);
 
         }catch (Exception e){

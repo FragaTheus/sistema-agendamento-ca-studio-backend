@@ -4,6 +4,6 @@ import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authenticati
 
 public interface RecoveryService {
 
-    public void recoveryPassword(RecoveryRequest request);
+    public void recoveryPassword(RecoveryCommand command);
 
 }

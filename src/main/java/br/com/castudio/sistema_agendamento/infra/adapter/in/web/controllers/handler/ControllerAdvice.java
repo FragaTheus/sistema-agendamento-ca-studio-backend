@@ -5,6 +5,7 @@ import br.com.castudio.sistema_agendamento.domain.exceptions.business.Credential
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.EmailRegisteredException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.PasswordsDontMatchException;
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.WrongKeyException;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -17,20 +18,20 @@ import java.util.*;
 public class ControllerAdvice {
 
     @ExceptionHandler(EmailRegisteredException.class)
-    public ResponseEntity<MessageResponse<Void>> handleRegisteredEmail(EmailRegisteredException ex){
-        var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
+    public ResponseEntity<MessageResponse<Object>> handleRegisteredEmail(EmailRegisteredException ex){
+        var response = ControllerMapper.toError(ex.getMessage(), null);
         return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 
     @ExceptionHandler(PasswordsDontMatchException.class)
-    public ResponseEntity<MessageResponse<Void>> handleConfirmPasswordDontMatch(PasswordsDontMatchException ex){
-        var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
+    public ResponseEntity<MessageResponse<Object>> handleConfirmPasswordDontMatch(PasswordsDontMatchException ex){
+        var response = ControllerMapper.toError(ex.getMessage(), null);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
     @ExceptionHandler(WrongKeyException.class)
-    public ResponseEntity<MessageResponse<Void>> handleWrongAdminKey(WrongKeyException ex){
-        var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
+    public ResponseEntity<MessageResponse<Object>> handleWrongAdminKey(WrongKeyException ex){
+        var response = ControllerMapper.toError(ex.getMessage(), null);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
@@ -45,13 +46,13 @@ public class ControllerAdvice {
         }
 
         String msg = "Erro na validacao dos dados inseridos: ";
-        var response = MessageResponse.errorWithData(msg, errors);
+        var response = ControllerMapper.toError(ex.getMessage(), errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 
     @ExceptionHandler(CredentialsException.class)
-    public ResponseEntity<MessageResponse<Void>> handleAuthException(CredentialsException ex){
-        var response = MessageResponse.<Void>errorWithoutData(ex.getMessage());
+    public ResponseEntity<MessageResponse<Object>> handleAuthException(CredentialsException ex){
+        var response = ControllerMapper.toError(ex.getMessage(), null);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
     }
 

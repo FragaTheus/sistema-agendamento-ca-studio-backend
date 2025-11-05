@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.aplication.service.key;
+package br.com.castudio.sistema_agendamento.aplication.domainservice.key;
 
 import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.WrongKeyException;
@@ -21,15 +21,22 @@ public class AdminKeyServiceImpl implements AdminKeyService {
 
     @Override
     public void keyIsMatch(String adminKey, String confirmAdminKey) {
-        if (!encoder.matches(adminKey, confirmAdminKey)){
+        if (!adminKey.equals(confirmAdminKey)){
             throw new WrongKeyException();
         }
     }
 
     @Override
-    public AdminKey changeKey(String newAdminKey) {
+    public AdminKey setKey(String newAdminKey) {
         newAdminKey = encoder.encode(newAdminKey);
         return new AdminKey(newAdminKey);
     }
+
+    @Override
+    public void changeAdminKey(ChangeKeyCommand command){
+        var currentKey = findKeyById();
+        if ()
+    }
+
 }
 

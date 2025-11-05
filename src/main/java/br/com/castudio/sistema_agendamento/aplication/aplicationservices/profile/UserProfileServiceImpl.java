@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.aplication.aplicationservices.profile;
 
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.profile.ProfileRequest;
-import br.com.castudio.sistema_agendamento.aplication.service.user.UserService;
+import br.com.castudio.sistema_agendamento.aplication.domainservice.user.UserService;
 import br.com.castudio.sistema_agendamento.domain.entity.User;
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.PasswordsDontMatchException;
 import lombok.AllArgsConstructor;

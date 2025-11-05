@@ -1,16 +1,15 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.authentication;
 
-import br.com.castudio.sistema_agendamento.domain.entity.User;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.login.LoginCommand;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.recovery.RecoveryCommand;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginResponse;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.recovery.RecoveryRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.register.RegisterRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.register.RegisterResponse;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.message.MessageResponse;
 import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.login.LoginService;
 import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.recovery.RecoveryService;
 import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.register.RegisterService;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.AuthMapper;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -30,31 +29,29 @@ public class AuthenticationController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<MessageResponse<LoginResponse>> authenticte(@Valid @RequestBody LoginRequest request){
-        String response = loginService.authenticate(request);
+    public ResponseEntity<MessageResponse<String>> authenticte(@Valid @RequestBody LoginRequest request){
+        LoginCommand command = ControllerMapper.fromLoginRequest(request);
+        String jwtToken = loginService.authenticate(command);
         String msg = "Login realizado com sucesso!";
-        var response = MessageResponse.sucessWithData(msg, LoginResponse);
+        var response = ControllerMapper.toSuccess(msg, jwtToken);
         return ResponseEntity.ok(response);
     }
 
     @PostMapping("/register")
     public ResponseEntity<MessageResponse<String>> createAdmin(@Valid @RequestBody RegisterRequest request){
-
-        User newUser = AuthMapper.toEntity(request);
-        String jwtToken = registerService.registerUser(newUser,
-                                                    request.getConfirmPassword(),
-                                                    request.getAdminKey());
-
+        var registerCommand = ControllerMapper.fromRegisterRequest(request);
+        String jwtToken = registerService.registerUser(registerCommand);
         String msg = "Cadastro realizado com sucesso!";
-        MessageResponse<String> response = AuthMapper.toSuccess(msg, jwtToken);
+        MessageResponse<String> response = ControllerMapper.toSuccess(msg, jwtToken);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
     @PatchMapping("/recovery")
-    public ResponseEntity<MessageResponse<Void>> recoveryPassword(@Valid @RequestBody RecoveryRequest request){
-        recoveryService.recoveryPassword(request);
+    public ResponseEntity<MessageResponse<Object>> recoveryPassword(@Valid @RequestBody RecoveryRequest request){
+        RecoveryCommand command = ControllerMapper.fromRecoveryRequest(request);
+        recoveryService.recoveryPassword(command);
         String msg = "Senha alterada com sucesso! Realize o login com a nova senha cadastrada.";
-        var response = MessageResponse.<Void>sucessWithoutData(msg);
+        var response = ControllerMapper.toSuccess(msg, null);
         return ResponseEntity.ok(response);
     }
 

@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.aplication.service.user;
+package br.com.castudio.sistema_agendamento.aplication.domainservice.user;
 
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.*;
 import br.com.castudio.sistema_agendamento.domain.entity.User;
@@ -20,10 +20,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public boolean existsUserByEmail(String email) {
         return userRepository.existsByEmail(email);
     }
 
+    @Override
+    public String encodePassword(String rawPassword) {
+        return encoder.encode(rawPassword);
+    }
 
     @Override
     public void confirmInputPasswordIsMatch(String password, String confirmPassword) {
@@ -41,7 +50,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void changePassword(String rawPassword, User user) {
-        rawPassword = encoder.encode(rawPassword);
+        rawPassword = encodePassword(rawPassword);
         user.setPassword(rawPassword);
     }
 

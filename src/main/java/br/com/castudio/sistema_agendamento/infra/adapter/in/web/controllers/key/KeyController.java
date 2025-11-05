@@ -2,7 +2,8 @@ package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.key
 
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.key.KeyRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.message.MessageResponse;
-import br.com.castudio.sistema_agendamento.aplication.service.key.AdminKeyService;
+import br.com.castudio.sistema_agendamento.aplication.domainservice.key.AdminKeyService;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import br.com.castudio.sistema_agendamento.infra.configs.security.details.UserDetails;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,12 +24,14 @@ public class KeyController {
     private final AdminKeyService adminKeyService;
 
     @PutMapping
-    public ResponseEntity<MessageResponse<Void>> changeKey(
+    public ResponseEntity<MessageResponse<Object>> changeKey(
             @Valid @RequestBody KeyRequest keyRequest, @AuthenticationPrincipal UserDetails userDetails
             ){
-        adminKeyService.setKey(keyRequest);
+
+        adminKeyService.
         String msg = "Chave alterada com sucesso!";
-        var response = MessageResponse.<Void>sucessWithoutData(msg);
+        var response = ControllerMapper.toSuccess(msg, null);
         return ResponseEntity.ok(response);
+
     }
 }

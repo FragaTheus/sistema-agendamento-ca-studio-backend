@@ -10,6 +10,6 @@ public interface UserRepository {
 
     public boolean existsByEmail(String email);
 
-    public Optional<User> findByEmail(String email);
+    public User findByEmail(String email);
 
 }

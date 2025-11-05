@@ -8,6 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 public interface LoginService {
 
 
-    public String authenticate(;
+    public String authenticate(LoginCommand command);
 
 }

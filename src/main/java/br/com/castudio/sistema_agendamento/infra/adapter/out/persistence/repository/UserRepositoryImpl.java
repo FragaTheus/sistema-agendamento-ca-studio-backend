@@ -35,12 +35,8 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public Optional<User> findByEmail(String email) {
-        try {
-            return jpa.findByEmail(email);
-        }catch (Exception e){
-            throw new DataBaseException();
-        }
+    public User findByEmail(String email) {
+        return jpa.findByEmail(email).orElseThrow(()-> new DataBaseException());
     }
 
 

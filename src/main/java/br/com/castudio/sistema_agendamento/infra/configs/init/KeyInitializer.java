@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.infra.configs.init;
 
-import br.com.castudio.sistema_agendamento.aplication.service.key.AdminKeyService;
+import br.com.castudio.sistema_agendamento.aplication.domainservice.key.AdminKeyService;
 import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
