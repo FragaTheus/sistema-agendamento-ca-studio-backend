@@ -31,7 +31,7 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<MessageResponse<LoginResponse>> authenticte(@Valid @RequestBody LoginRequest request){
-        LoginResponse LoginResponse = loginService.authenticate(request);
+        String response = loginService.authenticate(request);
         String msg = "Login realizado com sucesso!";
         var response = MessageResponse.sucessWithData(msg, LoginResponse);
         return ResponseEntity.ok(response);

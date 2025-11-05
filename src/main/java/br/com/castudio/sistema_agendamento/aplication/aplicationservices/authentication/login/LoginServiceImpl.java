@@ -1,13 +1,13 @@
 package br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.login;
 
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginResponse;
 import br.com.castudio.sistema_agendamento.infra.configs.security.details.UserDetailsServiceImpl;
 import br.com.castudio.sistema_agendamento.infra.configs.security.jwt.JwtService;
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.CredentialsException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,17 +19,16 @@ public class LoginServiceImpl implements LoginService {
     private final AuthenticationManager authenticationManager;
 
     @Override
-    public LoginResponse authenticate(LoginRequest request) {
+    public String authenticate() {
 
         try{
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
+                    new UsernamePasswordAuthenticationToken(userDetails.getUsername(), userDetails.getPassword())
             );
 
-            var user = adminDetailsService.loadUserByUsername(request.getEmail());
-            String token = jwtService.gererateToken(user);
+            UserDetails user = adminDetailsService.loadUserByUsername(userDetails.getUsername());
+            return jwtService.gererateToken(user);
 
-            return new LoginResponse(token);
         }catch (Exception e){
             throw new CredentialsException();
         }
