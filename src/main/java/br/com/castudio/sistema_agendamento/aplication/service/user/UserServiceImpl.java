@@ -2,16 +2,28 @@ package br.com.castudio.sistema_agendamento.aplication.service.user;
 
 import br.com.castudio.sistema_agendamento.domain.exceptions.business.*;
 import br.com.castudio.sistema_agendamento.domain.entity.User;
+import br.com.castudio.sistema_agendamento.domain.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 @AllArgsConstructor
-
 public class UserServiceImpl implements UserService {
 
     private final BCryptPasswordEncoder encoder;
+    private final UserRepository userRepository;
+
+    @Override
+    public User saveUser(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public boolean existsUserByEmail(String email) {
+        return userRepository.existsByEmail(email);
+    }
+
 
     @Override
     public void confirmInputPasswordIsMatch(String password, String confirmPassword) {

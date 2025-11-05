@@ -1,5 +1,6 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.authentication;
 
+import br.com.castudio.sistema_agendamento.domain.entity.User;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginResponse;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.recovery.RecoveryRequest;
@@ -9,6 +10,7 @@ import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.message.Mess
 import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.login.LoginService;
 import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.recovery.RecoveryService;
 import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.register.RegisterService;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.AuthMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -36,10 +38,15 @@ public class AuthenticationController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<MessageResponse<RegisterResponse>> createAdmin(@Valid @RequestBody RegisterRequest requestDto){
-        RegisterResponse registerResponse = registerService.createAdmin(requestDto);
+    public ResponseEntity<MessageResponse<String>> createAdmin(@Valid @RequestBody RegisterRequest request){
+
+        User newUser = AuthMapper.toEntity(request);
+        String jwtToken = registerService.registerUser(newUser,
+                                                    request.getConfirmPassword(),
+                                                    request.getAdminKey());
+
         String msg = "Cadastro realizado com sucesso!";
-        var response = MessageResponse.sucessWithData(msg, registerResponse);
+        MessageResponse<String> response = AuthMapper.toSuccess(msg, jwtToken);
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 

@@ -6,6 +6,6 @@ import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authenticati
 
 public interface RegisterService {
 
-    public String createAdmin(User user, String confirmPassword, String inputAdminKey);
+    public String registerUser(User user, String confirmPassword, String inputAdminKey);
 
 }

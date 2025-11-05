@@ -5,6 +5,10 @@ import br.com.castudio.sistema_agendamento.domain.entity.User;
 
 public interface UserService {
 
+    public User saveUser(User user);
+
+    public boolean existsUserByEmail(String email);
+
     public void confirmInputPasswordIsMatch(String password, String confirmPassword);
 
     public void validatePassword(String password, User user);

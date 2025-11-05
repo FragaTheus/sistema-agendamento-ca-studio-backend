@@ -22,19 +22,17 @@ public class RegisterServiceImpl implements RegisterService {
     private final UserService userService;
     private final AdminKeyService adminKeyService;
     private final JwtService jwtService;
-    private final UserRepository userRepository;
-    private final AdminKeyRepository keyRepository;
 
     @Override
-    public String createAdmin(User user, String confirmPassword, String inputAdminKey) {
+    public String registerUser(User user, String confirmPassword, String inputAdminKey) {
 
-        userRepository.existsByEmail(user.getEmail());
+        userService.existsUserByEmail(user.getEmail());
         userService.confirmInputPasswordIsMatch(user.getPassword(), confirmPassword);
         userService.changePassword(confirmPassword, user);
-        AdminKey databaseAdminKey = keyRepository.findById((byte) 1);
+        AdminKey databaseAdminKey = adminKeyService.findKeyById();
         adminKeyService.keyIsMatch(inputAdminKey, databaseAdminKey.getValue());
 
-        User savedUser = userRepository.save(user);
+        User savedUser = userService.saveUser(user);
         UserDetails userDetails = new UserDetails(savedUser);
         return jwtService.gererateToken(userDetails);
 
