@@ -1,0 +1,30 @@
+package br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.repositoryimpl.adminkey;
+
+import br.com.castudio.sistema_agendamento.contexts.usermanager.domain.entity.adminkey.AdminKey;
+import br.com.castudio.sistema_agendamento.infra.exceptions.DataBaseException;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.domain.repository.adminkey.AdminKeyRepository;
+import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.jpa.adminkey.AdminKeyJpa;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Repository;
+
+@Repository
+@RequiredArgsConstructor
+public class AdminKeyRepositoryImpl implements AdminKeyRepository {
+
+    private final AdminKeyJpa jpa;
+
+    @Override
+    public AdminKey findById(Byte id) {
+        return jpa.findById(id).orElseThrow(()-> new DataBaseException());
+    }
+
+    @Override
+    public AdminKey save(AdminKey key) {
+        try{
+            return jpa.save(key);
+        }catch (Exception e){
+            throw new DataBaseException();
+        }
+    }
+
+};

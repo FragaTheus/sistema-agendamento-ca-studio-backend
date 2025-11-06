@@ -1,9 +1,9 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.key;
 
-import br.com.castudio.sistema_agendamento.usermanager.aplication.domainservice.key.command.ChangeKeyCommand;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.domainservice.key.command.ChangeKeyCommand;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.key.ChangeKeyRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
-import br.com.castudio.sistema_agendamento.usermanager.aplication.domainservice.key.contract.AdminKeyService;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.domainservice.key.contract.AdminKeyService;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import br.com.castudio.sistema_agendamento.infra.configs.security.userdetails.UserDetails;
 import jakarta.validation.Valid;

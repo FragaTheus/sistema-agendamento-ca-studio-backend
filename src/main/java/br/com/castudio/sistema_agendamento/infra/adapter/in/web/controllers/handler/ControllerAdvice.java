@@ -1,8 +1,8 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.handler;
 
+import br.com.castudio.sistema_agendamento.contexts.usermanager.domain.exceptions.*;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
-import br.com.castudio.sistema_agendamento.usermanager.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

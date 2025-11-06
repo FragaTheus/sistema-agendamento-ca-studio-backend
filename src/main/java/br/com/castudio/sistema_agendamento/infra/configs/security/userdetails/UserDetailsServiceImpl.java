@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.infra.configs.security.userdetails;
 
-import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.jpa.UserJpa;
+import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.jpa.user.UserJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

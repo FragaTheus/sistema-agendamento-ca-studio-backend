@@ -1,14 +1,14 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.authentication;
 
-import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.login.command.LoginCommand;
-import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.recovery.command.RecoveryCommand;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.login.command.LoginCommand;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.recovery.command.RecoveryCommand;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.recovery.RecoveryRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.register.RegisterRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
-import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.login.contract.LoginService;
-import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.recovery.contract.RecoveryService;
-import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.register.contract.RegisterService;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.login.contract.LoginService;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.recovery.contract.RecoveryService;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.register.contract.RegisterService;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

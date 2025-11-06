@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.infra.configs.init;
 
-import br.com.castudio.sistema_agendamento.usermanager.aplication.domainservice.key.contract.AdminKeyService;
-import br.com.castudio.sistema_agendamento.usermanager.domain.entity.adminkey.AdminKey;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.domainservice.key.contract.AdminKeyService;
+import br.com.castudio.sistema_agendamento.contexts.usermanager.domain.entity.adminkey.AdminKey;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.event.EventListener;
