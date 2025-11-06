@@ -1,6 +1,7 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper;
 
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.CreateProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.CreateProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.DeleteProcedureCommand;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.entity.Procedure;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.login.command.LoginCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.profile.command.UpdateProfileCommand;
@@ -8,15 +9,16 @@ import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplic
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.register.command.RegisterCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.domainservice.key.command.ChangeKeyCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.profile.command.DeleteProfileCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.delete.DeleteRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.login.LoginRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.procedure.CreateProcedureRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.profile.ProfileRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.recovery.RecoveryRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.register.RegisterRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.key.ChangeKeyRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.delete.DeleteProcedureRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.delete.DeleteUserRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.login.LoginRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.create.CreateProcedureRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.profile.ProfileRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.recovery.RecoveryRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.register.RegisterRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.key.ChangeKeyRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.ProcedureResponse;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.response.ProcedureResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +43,7 @@ public record ControllerMapper() {
                 .build();
     }
 
-    public static DeleteProfileCommand fromDeleteRequest(DeleteRequest request) {
+    public static DeleteProfileCommand fromUserDeleteReques(DeleteUserRequest request) {
         return DeleteProfileCommand.builder()
                 .email(request.email())
                 .password(request.password())
@@ -92,6 +94,12 @@ public record ControllerMapper() {
                 .category(request.getCategory())
                 .price(request.getPrice())
                 .duration(request.getDuration())
+                .build();
+    }
+
+    public static DeleteProcedureCommand fromDeleteProcedureRequest(DeleteProcedureRequest request){
+        return DeleteProcedureCommand.builder()
+                .adminKey(request.getAdminKey())
                 .build();
     }
 
