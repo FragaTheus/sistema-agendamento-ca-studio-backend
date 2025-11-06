@@ -28,6 +28,4 @@ public class ProfileRequest{
     )
     private String newPassword;
 
-
-
 }

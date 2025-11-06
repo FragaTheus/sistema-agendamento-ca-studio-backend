@@ -1,14 +1,11 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.repository;
 
-import br.com.castudio.sistema_agendamento.domain.entity.User;
-import br.com.castudio.sistema_agendamento.domain.exceptions.system.DataBaseException;
-import br.com.castudio.sistema_agendamento.domain.repository.UserRepository;
+import br.com.castudio.sistema_agendamento.domain.entity.user.User;
+import br.com.castudio.sistema_agendamento.infra.exceptions.DataBaseException;
+import br.com.castudio.sistema_agendamento.domain.repository.user.UserRepository;
 import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.jpa.UserJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
-import java.util.Optional;
-
 
 @Repository
 @RequiredArgsConstructor
@@ -37,6 +34,16 @@ public class UserRepositoryImpl implements UserRepository {
     @Override
     public User findByEmail(String email) {
         return jpa.findByEmail(email).orElseThrow(()-> new DataBaseException());
+    }
+
+    @Override
+    public void deleteUser(User user) {
+         findByEmail(user.getEmail());
+         try{
+             jpa.delete(user);
+         }catch (Exception e){
+             throw new DataBaseException();
+         }
     }
 
 

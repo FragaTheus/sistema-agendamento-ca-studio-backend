@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.infra.configs.security.jwt;
 
-import br.com.castudio.sistema_agendamento.domain.exceptions.system.InternalErrorException;
+import br.com.castudio.sistema_agendamento.infra.exceptions.InternalErrorException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

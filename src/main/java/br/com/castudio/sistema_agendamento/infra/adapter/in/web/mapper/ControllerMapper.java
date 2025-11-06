@@ -1,12 +1,18 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper;
 
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.login.LoginCommand;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.recovery.RecoveryCommand;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.register.RegisterCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.recovery.RecoveryRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.register.RegisterRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.message.MessageResponse;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.login.command.LoginCommand;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.profile.command.UpdateProfileCommand;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.recovery.command.RecoveryCommand;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.register.command.RegisterCommand;
+import br.com.castudio.sistema_agendamento.aplication.domainservice.key.command.ChangeKeyCommand;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.profile.command.DeleteProfileCommand;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.delete.DeleteRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.login.LoginRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.profile.ProfileRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.recovery.RecoveryRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.register.RegisterRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.key.ChangeKeyRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
 
 
 public record ControllerMapper() {
@@ -28,10 +34,33 @@ public record ControllerMapper() {
                 .build();
     }
 
+    public static DeleteProfileCommand fromDeleteRequest(DeleteRequest request) {
+        return DeleteProfileCommand.builder()
+                .email(request.email())
+                .password(request.password())
+                .build();
+    }
+
     public static RecoveryCommand fromRecoveryRequest(RecoveryRequest request){
         return RecoveryCommand.builder()
                 .userEmail(request.getEmail())
                 .newPassword(request.getNewPassword())
+                .build();
+    }
+
+    public static UpdateProfileCommand fromUpdateProfileRequest(ProfileRequest request, String email){
+        return UpdateProfileCommand.builder()
+                .email(email)
+                .name(request.getName())
+                .currentPassword(request.getCurrentPassword())
+                .newPassword(request.getNewPassword())
+                .build();
+    }
+
+    public static ChangeKeyCommand fromChangeKeyRequest(ChangeKeyRequest request){
+        return ChangeKeyCommand.builder()
+                .currentKey(request.currentKey())
+                .newKey(request.newKey())
                 .build();
     }
 
@@ -50,5 +79,6 @@ public record ControllerMapper() {
                 .data(data)
                 .build();
     }
+
 
 }

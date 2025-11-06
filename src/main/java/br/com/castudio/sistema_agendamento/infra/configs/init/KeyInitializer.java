@@ -1,31 +1,29 @@
 package br.com.castudio.sistema_agendamento.infra.configs.init;
 
-import br.com.castudio.sistema_agendamento.aplication.domainservice.key.AdminKeyService;
-import br.com.castudio.sistema_agendamento.domain.entity.AdminKey;
+import br.com.castudio.sistema_agendamento.aplication.domainservice.key.contract.AdminKeyService;
+import br.com.castudio.sistema_agendamento.domain.entity.adminkey.AdminKey;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
-public class KeyInitializer implements CommandLineRunner {
+public class KeyInitializer {
 
     private final AdminKeyService adminKeyService;
+    private final String adminKeyValue;
 
-    @Value("${user.key}")
-    private String adminKeyValue;
 
-    public KeyInitializer(AdminKeyService adminKeyService) {
+    public KeyInitializer(AdminKeyService adminKeyService,
+                          @Value("${user.adminKey}") String adminKeyValue) {
         this.adminKeyService = adminKeyService;
+        this.adminKeyValue = adminKeyValue;
     }
 
-    @Override
+    @EventListener(org.springframework.boot.context.event.ApplicationReadyEvent.class)
     @Transactional
-    public void run(String... args) throws Exception {
-
-        if (adminKeyService.getKey().isEmpty()) {
-            AdminKey firstAdminKey = adminKeyService.insertKey(adminKeyValue);
-        }
+    public void init() {
+        AdminKey firstAdminKey = adminKeyService.setKey(adminKeyValue);
+        adminKeyService.saveAdminKey(firstAdminKey);
     }
 }
-

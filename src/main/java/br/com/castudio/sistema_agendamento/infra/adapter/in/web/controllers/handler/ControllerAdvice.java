@@ -1,10 +1,10 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.handler;
 
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.message.MessageResponse;
-import br.com.castudio.sistema_agendamento.domain.exceptions.business.CredentialsException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.business.EmailRegisteredException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.business.PasswordsDontMatchException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.business.WrongKeyException;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
+import br.com.castudio.sistema_agendamento.domain.exceptions.CredentialsException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.EmailRegisteredException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordsDontMatchException;
+import br.com.castudio.sistema_agendamento.domain.exceptions.WrongKeyException;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,7 +46,7 @@ public class ControllerAdvice {
         }
 
         String msg = "Erro na validacao dos dados inseridos: ";
-        var response = ControllerMapper.toError(ex.getMessage(), errors);
+        var response = ControllerMapper.toError(msg, errors);
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
     }
 

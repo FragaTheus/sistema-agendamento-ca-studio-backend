@@ -1,14 +1,14 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.authentication;
 
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.login.LoginCommand;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.recovery.RecoveryCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.login.LoginRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.recovery.RecoveryRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.authentication.register.RegisterRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.message.MessageResponse;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.login.LoginService;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.recovery.RecoveryService;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.authentication.register.RegisterService;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.login.command.LoginCommand;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.recovery.command.RecoveryCommand;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.login.LoginRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.recovery.RecoveryRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.register.RegisterRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.login.contract.LoginService;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.recovery.contract.RecoveryService;
+import br.com.castudio.sistema_agendamento.aplication.aplicationservices.register.contract.RegisterService;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
