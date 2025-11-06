@@ -20,7 +20,11 @@ public class AdminKeyRepositoryImpl implements AdminKeyRepository {
 
     @Override
     public AdminKey save(AdminKey key) {
-        return jpa.save(key);
+        try{
+            return jpa.save(key);
+        }catch (Exception e){
+            throw new DataBaseException();
+        }
     }
 
 };

@@ -1,10 +1,7 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.handler;
 
+import br.com.castudio.sistema_agendamento.domain.exceptions.*;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
-import br.com.castudio.sistema_agendamento.domain.exceptions.CredentialsException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.EmailRegisteredException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.PasswordsDontMatchException;
-import br.com.castudio.sistema_agendamento.domain.exceptions.WrongKeyException;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,6 +51,18 @@ public class ControllerAdvice {
     public ResponseEntity<MessageResponse<Object>> handleAuthException(CredentialsException ex){
         var response = ControllerMapper.toError(ex.getMessage(), null);
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(response);
+    }
+
+    @ExceptionHandler(SameNameException.class)
+    public ResponseEntity<MessageResponse<Object>> handleSameNameException(SameNameException ex){
+        var response = ControllerMapper.toError(ex.getMessage(), null);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
+    }
+
+    @ExceptionHandler(SamePasswordException.class)
+    public ResponseEntity<MessageResponse<Object>> handleSamePasswordException(SamePasswordException ex){
+        var response = ControllerMapper.toError(ex.getMessage(), null);
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(response);
     }
 
 }

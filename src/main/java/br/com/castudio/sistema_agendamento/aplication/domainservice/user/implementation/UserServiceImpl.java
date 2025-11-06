@@ -30,9 +30,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void existsUserByEmail(String email) {
-        if (userRepository.existsByEmail(email)){
-            throw new EmailRegisteredException();
-        }
+        userRepository.existsByEmail(email);
     }
 
     @Override
