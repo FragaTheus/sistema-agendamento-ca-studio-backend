@@ -1,6 +1,6 @@
-package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.mapper;
+package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.mapper;
 
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command.CreateProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.CreateProcedureCommand;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.entity.Procedure;
 
 import java.math.BigDecimal;

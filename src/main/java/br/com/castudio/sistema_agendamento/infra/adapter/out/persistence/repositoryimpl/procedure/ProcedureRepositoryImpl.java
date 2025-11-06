@@ -3,6 +3,7 @@ package br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.reposi
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.entity.Procedure;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.repository.ProcedureRepository;
 import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.jpa.procedure.ProcedureJpa;
+import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.repositoryimpl.procedure.query.FilterObjectQuery;
 import br.com.castudio.sistema_agendamento.infra.exceptions.DataBaseException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -42,7 +43,7 @@ public class ProcedureRepositoryImpl implements ProcedureRepository {
     @Override
     public List<Procedure> findByActiveIsTrue() {
         try{
-            return jpa.findByActiveIsTrue();
+            return jpa.findByIsActiveTrue();
         }catch (Exception e){
             throw new DataBaseException();
         }
@@ -77,6 +78,15 @@ public class ProcedureRepositoryImpl implements ProcedureRepository {
 
     @Override
     public boolean existsByName(String name) {
-        return jpa.exitsByName(name);
+        return jpa.existsByName(name);
+    }
+
+    @Override
+    public List<Procedure> filterProcedures(FilterObjectQuery objectQuery) {
+        try {
+            return jpa.filterProcedures(objectQuery.name(), objectQuery.category(), objectQuery.isActive());
+        }catch (Exception e){
+            throw new DataBaseException();
+        }
     }
 }

@@ -1,8 +1,8 @@
-package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.contract;
+package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.contract;
 
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command.CreateProcedureCommand;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command.FilterProcedureCommand;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command.UpdateProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.CreateProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.FilterProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.UpdateProcedureCommand;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.entity.Procedure;
 
 import java.util.List;

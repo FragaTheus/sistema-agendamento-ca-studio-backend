@@ -1,18 +1,19 @@
-package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.implementation;
+package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.implementation;
 
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command.CreateProcedureCommand;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command.FilterProcedureCommand;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command.UpdateProcedureCommand;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.contract.ProcedureService;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.mapper.ProcedureMapper;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.CreateProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.FilterProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command.UpdateProcedureCommand;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.contract.ProcedureService;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.mapper.ProcedureMapper;
+import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.mapper.QueryObjectMapper;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.entity.Procedure;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.enums.CategoryEnum;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.exception.ProcedureAlreadyExists;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.exception.SamePriceException;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.repository.ProcedureRepository;
+import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.repositoryimpl.procedure.query.FilterObjectQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -108,6 +109,7 @@ public class ProcedureServiceImpl implements ProcedureService {
 
     @Override
     public List<Procedure> filterProcedures(FilterProcedureCommand command) {
-        return List.of();
+        FilterObjectQuery objectQuery = QueryObjectMapper.fromCommand(command);
+        return repository.filterProcedures(objectQuery);
     }
 }

@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.domainservice.procedure.command;
+package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.procedure.command;
 
 public record UpdateProcedureCommand(
         String name,
