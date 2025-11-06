@@ -12,7 +12,7 @@ public record ProcedureMapper() {
                 command.name(),
                 command.description(),
                 command.category(),
-                new BigDecimal(command.price()),
+                (command.price()),
                 command.duration(),
                 command.isActive()
                 );

@@ -64,12 +64,11 @@ public class ProcedureServiceImpl implements ProcedureService {
     }
 
     @Override
-    public Procedure createProcedure(CreateProcedureCommand command) {
+    public void  createProcedure(CreateProcedureCommand command) {
         if (existProcedureByName(command.name())){
             throw new ProcedureAlreadyExists();
         }
         Procedure procedure = ProcedureMapper.fromCommand(command);
-        return saveProcedure(procedure);
     }
 
     @Override

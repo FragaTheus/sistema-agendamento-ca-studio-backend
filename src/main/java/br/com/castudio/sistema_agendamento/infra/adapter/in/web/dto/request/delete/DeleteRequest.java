@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.delete;
+package br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.delete;
 
 import lombok.Builder;
 

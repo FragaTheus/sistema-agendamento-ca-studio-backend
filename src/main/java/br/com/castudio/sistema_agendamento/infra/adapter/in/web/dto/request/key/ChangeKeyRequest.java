@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.key;
+package br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.key;
 
 import lombok.Builder;
 

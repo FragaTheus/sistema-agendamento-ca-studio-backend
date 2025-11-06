@@ -1,4 +1,4 @@
-package br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.profile;
+package br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.profile;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;

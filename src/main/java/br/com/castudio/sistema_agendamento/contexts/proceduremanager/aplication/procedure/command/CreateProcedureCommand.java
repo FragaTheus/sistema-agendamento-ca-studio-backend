@@ -2,12 +2,14 @@ package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication
 
 import lombok.Builder;
 
+import java.math.BigDecimal;
+
 @Builder
 public record CreateProcedureCommand(
         String name,
         String description,
         String category,
-        String price,
+        BigDecimal price,
         Integer duration,
         boolean isActive
 ) {

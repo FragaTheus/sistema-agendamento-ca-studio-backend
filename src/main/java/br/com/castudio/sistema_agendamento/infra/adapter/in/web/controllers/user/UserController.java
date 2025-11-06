@@ -2,9 +2,9 @@ package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.use
 
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.profile.command.UpdateProfileCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.profile.command.DeleteProfileCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.delete.DeleteRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.delete.DeleteRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.profile.ProfileRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.profile.ProfileRequest;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.profile.contract.UserProfileService;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import br.com.castudio.sistema_agendamento.infra.configs.security.userdetails.UserDetails;

@@ -2,9 +2,9 @@ package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.aut
 
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.login.command.LoginCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.recovery.command.RecoveryCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.login.LoginRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.recovery.RecoveryRequest;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.register.RegisterRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.login.LoginRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.recovery.RecoveryRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.register.RegisterRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.login.contract.LoginService;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.recovery.contract.RecoveryService;

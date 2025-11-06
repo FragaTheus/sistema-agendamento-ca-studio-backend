@@ -1,7 +1,7 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.controllers.key;
 
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.domainservice.key.command.ChangeKeyCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.key.ChangeKeyRequest;
+import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.request.key.ChangeKeyRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.domainservice.key.contract.AdminKeyService;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;

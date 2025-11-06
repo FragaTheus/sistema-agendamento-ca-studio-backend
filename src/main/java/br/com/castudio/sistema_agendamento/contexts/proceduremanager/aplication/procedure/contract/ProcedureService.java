@@ -25,7 +25,7 @@ public interface ProcedureService {
 
     public void deleteProcedure(Procedure procedure);
 
-    public Procedure createProcedure(CreateProcedureCommand command);
+    public void createProcedure(CreateProcedureCommand command);
 
     public Procedure updateProcedure(UpdateProcedureCommand command);
 
