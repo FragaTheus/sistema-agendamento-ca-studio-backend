@@ -1,8 +1,8 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.repository;
 
-import br.com.castudio.sistema_agendamento.domain.entity.user.User;
+import br.com.castudio.sistema_agendamento.usermanager.domain.entity.user.User;
 import br.com.castudio.sistema_agendamento.infra.exceptions.DataBaseException;
-import br.com.castudio.sistema_agendamento.domain.repository.user.UserRepository;
+import br.com.castudio.sistema_agendamento.usermanager.domain.repository.user.UserRepository;
 import br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.jpa.UserJpa;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;

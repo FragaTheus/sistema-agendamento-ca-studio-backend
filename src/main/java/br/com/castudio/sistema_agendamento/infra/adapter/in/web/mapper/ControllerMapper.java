@@ -1,11 +1,11 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper;
 
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.login.command.LoginCommand;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.profile.command.UpdateProfileCommand;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.recovery.command.RecoveryCommand;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.register.command.RegisterCommand;
-import br.com.castudio.sistema_agendamento.aplication.domainservice.key.command.ChangeKeyCommand;
-import br.com.castudio.sistema_agendamento.aplication.aplicationservices.profile.command.DeleteProfileCommand;
+import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.login.command.LoginCommand;
+import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.profile.command.UpdateProfileCommand;
+import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.recovery.command.RecoveryCommand;
+import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.register.command.RegisterCommand;
+import br.com.castudio.sistema_agendamento.usermanager.aplication.domainservice.key.command.ChangeKeyCommand;
+import br.com.castudio.sistema_agendamento.usermanager.aplication.aplicationservices.profile.command.DeleteProfileCommand;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.delete.DeleteRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.profile.ProfileRequest;

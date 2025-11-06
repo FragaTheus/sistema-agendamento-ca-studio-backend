@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.out.persistence.jpa;
 
-import br.com.castudio.sistema_agendamento.domain.entity.user.User;
+import br.com.castudio.sistema_agendamento.usermanager.domain.entity.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

@@ -1,6 +1,6 @@
 package br.com.castudio.sistema_agendamento.infra.configs.security.userdetails;
 
-import br.com.castudio.sistema_agendamento.domain.entity.user.User;
+import br.com.castudio.sistema_agendamento.usermanager.domain.entity.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
