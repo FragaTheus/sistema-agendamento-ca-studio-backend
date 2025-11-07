@@ -1,7 +1,6 @@
 package br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper;
 
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.CreateProcedureCommand;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.DeleteProcedureCommand;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.entity.Procedure;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.login.command.LoginCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.profile.command.UpdateProfileCommand;

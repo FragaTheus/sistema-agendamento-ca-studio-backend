@@ -1,7 +1,6 @@
 package br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.implementation;
 
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.CreateProcedureCommand;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.DeleteProcedureCommand;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.FilterProcedureCommand;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.UpdateProcedureCommand;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.contract.ProcedureService;
@@ -60,8 +59,9 @@ public class ProcedureServiceImpl implements ProcedureService {
     }
 
     @Override
-    public void deleteProcedure(DeleteProcedureCommand command) {
-        repository.delete();
+    public void deleteProcedure(Long id) {
+        Procedure procedure = repository.findById(id);
+        repository.delete(procedure);
     }
 
     @Override

@@ -5,13 +5,12 @@ import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.contract.ProcedureService;
 import br.com.castudio.sistema_agendamento.contexts.proceduremanager.domain.entity.Procedure;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.create.CreateProcedureRequest;
-import br.com.castudio.sistema_agendamento.contexts.proceduremanager.aplication.command.DeleteProcedureCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.delete.DeleteProcedureRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.response.MessageResponse;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.response.ProcedureResponse;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.mapper.ControllerMapper;
 import br.com.castudio.sistema_agendamento.infra.configs.security.userdetails.UserDetails;
 import jakarta.validation.Valid;
+import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -45,17 +44,15 @@ public class ProcedureController {
         return ResponseEntity.ok(response);
     }
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public ResponseEntity<MessageResponse<Object>> deleteProcedure(
-            @Valid @RequestBody DeleteProcedureRequest request,
+            @PathVariable("/{id}") Long id,
             @AuthenticationPrincipal UserDetails userDetails
     ){
-        DeleteProcedureCommand command = ControllerMapper.fromDeleteProcedureRequest(request);
-        procedureService.deleteProcedure(command);
+        procedureService.deleteProcedure(id);
         String msg = "Procedimento excluido com sucesso!";
         MessageResponse<Object> response = ControllerMapper.toSuccess(msg, null);
         return ResponseEntity.ok(response);
     }
-
 
 }
