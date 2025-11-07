@@ -39,7 +39,7 @@ public class UserController {
     ResponseEntity<MessageResponse<Object>> deleteAdmin(
             @Valid @RequestBody DeleteUserRequest request, @AuthenticationPrincipal UserDetails userDetails
     ){
-        DeleteProfileCommand command = ControllerMapper.fromDeleteRequest(request);
+        DeleteProfileCommand command = ControllerMapper.fromUserDeleteReques(request);
         userProfileService.deleteProfile(command);
         String msg = "Conta deletada com sucesso!";
         var response = ControllerMapper.toSuccess(msg, null);

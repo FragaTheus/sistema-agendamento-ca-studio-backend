@@ -10,8 +10,7 @@ public record CreateProcedureCommand(
         String description,
         String category,
         BigDecimal price,
-        Integer duration,
-        boolean isActive
+        Integer duration
 ) {
 
 

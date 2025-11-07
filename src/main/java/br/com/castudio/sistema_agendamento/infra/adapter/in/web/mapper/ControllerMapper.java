@@ -8,7 +8,6 @@ import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplic
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.register.command.RegisterCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.domainservice.key.command.ChangeKeyCommand;
 import br.com.castudio.sistema_agendamento.contexts.usermanager.aplication.aplicationservices.profile.command.DeleteProfileCommand;
-import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.delete.DeleteProcedureRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.delete.DeleteUserRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.manageruser.login.LoginRequest;
 import br.com.castudio.sistema_agendamento.infra.adapter.in.web.dto.managerprocedure.create.CreateProcedureRequest;
@@ -96,11 +95,6 @@ public record ControllerMapper() {
                 .build();
     }
 
-    public static DeleteProcedureCommand fromDeleteProcedureRequest(DeleteProcedureRequest request){
-        return DeleteProcedureCommand.builder()
-                .adminKey(request.getAdminKey())
-                .build();
-    }
 
     public static <T> MessageResponse<T> toSuccess(String msg, T data) {
         return MessageResponse.<T>builder()

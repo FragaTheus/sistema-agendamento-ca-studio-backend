@@ -70,6 +70,7 @@ public class ProcedureServiceImpl implements ProcedureService {
             throw new ProcedureAlreadyExists();
         }
         Procedure procedure = ProcedureMapper.fromCommand(command);
+        saveProcedure(procedure);
     }
 
     @Override

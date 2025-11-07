@@ -12,7 +12,7 @@ public record ProcedureMapper() {
                 command.category(),
                 (command.price()),
                 command.duration(),
-                command.isActive()
+                true
                 );
     }
 
