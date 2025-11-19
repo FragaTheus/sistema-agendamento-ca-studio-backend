@@ -4,6 +4,7 @@ import br.com.castudio.sistema_agendamento.aplication.aplicationservices.registe
 import br.com.castudio.sistema_agendamento.aplication.aplicationservices.register.contract.RegisterService;
 import br.com.castudio.sistema_agendamento.aplication.domainservice.key.contract.AdminKeyService;
 import br.com.castudio.sistema_agendamento.aplication.domainservice.user.contract.UserService;
+import br.com.castudio.sistema_agendamento.domain.exceptions.EmailRegisteredException;
 import br.com.castudio.sistema_agendamento.domain.factory.userfactory.UserFactory;
 import br.com.castudio.sistema_agendamento.infra.configs.security.userdetails.UserDetails;
 import br.com.castudio.sistema_agendamento.infra.configs.security.jwt.JwtService;
@@ -24,13 +25,17 @@ public class RegisterServiceImpl implements RegisterService {
     @Override
     public String registerUser(RegisterCommand command) {
 
-        userService.existsUserByEmail(command.useremail());
-        userService.confirmInputPasswordIsMatch(command.userPassword(), command.confirmPassword());
-        adminKeyService.validateKey(command.adminKey());
-        User user = UserFactory.createFromRegisterCommand(command, encoder);
-        User savedUser = userService.saveUser(user);
-        UserDetails userDetails = new UserDetails(savedUser);
-        return jwtService.gererateToken(userDetails);
+        boolean isMatch = userService.existsUserByEmail(command.useremail());
+        if (isMatch) {
+            userService.confirmInputPasswordIsMatch(command.userPassword(), command.confirmPassword());
+            adminKeyService.validateKey(command.adminKey());
+            User user = UserFactory.createFromRegisterCommand(command, encoder);
+            User savedUser = userService.saveUser(user);
+            UserDetails userDetails = new UserDetails(savedUser);
+            return jwtService.gererateToken(userDetails);
+        }else{
+            throw new EmailRegisteredException();
+        }
 
     }
 }

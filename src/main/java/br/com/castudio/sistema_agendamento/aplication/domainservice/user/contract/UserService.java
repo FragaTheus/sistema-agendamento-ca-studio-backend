@@ -8,7 +8,7 @@ public interface UserService {
 
     public User findUserByEmail(String email);
 
-    public void existsUserByEmail(String email);
+    public boolean existsUserByEmail(String email);
 
     public void confirmInputPasswordIsMatch(String password, String confirmPassword);
 
